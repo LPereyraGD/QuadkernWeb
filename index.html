@@ -1,54 +1,295 @@
 <!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="/public/QuadkernLogo.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QuadKern - En Construcción</title>
-  <link rel="stylesheet" href="/public/style.css">
-</head>
-<body>
-  <div class="container">
-    <header class="logo-section">
-      <img src="/public/QuadkernLogo.png" alt="QuadKern Logo" class="logo">
-    </header>
-    
-    <main class="content">
-      <h1 class="title">Estamos trabajando en QuadKern</h1>
-      <p class="message">Disculpe las molestias</p>
-      <div class="construction-icon">🚧</div>
-    </main>
-    
-    <footer class="footer">
-      <div class="copyright">
-        <p>&copy; 2025 QuadKern. Todos los derechos reservados.</p>
-        <div class="authors">
-          <h3>Desarrollado por:</h3>
-          <div class="team-grid">
-            <div class="team-member">
-              <div class="member-name">Augusto Canepa</div>
-              <div class="member-title">CEO</div>
-              <div class="member-description">El jefe que tiene todas las ideas geniales (y algunas no tan geniales)</div>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Space+Grotesk%3Awght%40400%3B500%3B700"
+    />
+
+    <title>QuadKern</title>
+    <link rel="icon" type="image/png" href="/public/QuadkernLogo.png" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+    <div
+      class="relative flex h-auto min-h-screen w-full flex-col bg-[#0f1624] dark group/design-root overflow-x-hidden"
+      style='font-family: "Space Grotesk", "Noto Sans", sans-serif;'
+    >
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#202e4b] px-10 py-3">
+          <div class="flex items-center gap-4 text-white">
+            <img src="/public/QuadkernLogo.png" alt="QuadKern" class="h-6 w-auto" />
+            <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">QuadKern</h2>
+          </div>
+          <div class="flex flex-1 justify-end gap-8">
+            <div class="flex items-center gap-9">
+              <a class="text-white text-sm font-medium leading-normal" href="#">Inicio</a>
+              <a class="text-white text-sm font-medium leading-normal" href="#">Servicios</a>
+              <a class="text-white text-sm font-medium leading-normal" href="#">Proyectos</a>
+              <a class="text-white text-sm font-medium leading-normal" href="#">Equipo</a>
+              <a class="text-white text-sm font-medium leading-normal" href="#">Contacto</a>
             </div>
-            <div class="team-member">
-              <div class="member-name">Lautaro Pereyra</div>
-              <div class="member-title">CTO</div>
-              <div class="member-description">El cerebro técnico que hace que todo funcione (o al menos lo intenta)</div>
+            <button
+              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#2970ff] text-white text-sm font-bold leading-normal tracking-[0.015em]"
+            >
+              <span class="truncate">Contáctanos</span>
+            </button>
+          </div>
+        </header>
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="@container">
+              <div class="@[480px]:p-4">
+                <div
+                  class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4"
+                  style='background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAmB09cPe_b2JQIVZmNud9IQDmAhhHj2rI4lw1fvJVsLLt0H2iiTVrf2dXEizTSqtlHl8Gl0WiW4lPg3PXsryU4y7KnptSE27rmW6yGUTks-GxIn0hgbpF2nUk7S4LzRJLwgY41VI_gpYeR8fGvJih3yNVsvfdF5QCn4VhUi0b4zdMAB7xKyWwrb6g0082VPD-YNx5u8Ubej4iejh1z0bYJTx_f6WaRcfgKYES_iBrcRfRiXYpoR4AGr_e9LfxiB5w-_iUCNe46qD0");'
+                >
+                  <div class="flex flex-col gap-2 text-center">
+                    <h1
+                      class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]"
+                    >
+                      Creamos experiencias digitales con Unity
+                    </h1>
+                    <h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
+                      QuadKern es un estudio de desarrollo de software especializado en la creación de aplicaciones y juegos con Unity. Transformamos tus ideas en realidad,
+                      ofreciendo soluciones innovadoras y de alta calidad.
+                    </h2>
+                  </div>
+                  <div class="flex-wrap gap-3 flex justify-center">
+                    <button
+                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#2970ff] text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]"
+                    >
+                      <span class="truncate">Hablar con nosotros</span>
+                    </button>
+                    <button
+                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#202e4b] text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]"
+                    >
+                      <span class="truncate">Ver proyectos</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="team-member">
-              <div class="member-name">Nicolas Ferraro</div>
-              <div class="member-title">Master BE</div>
-              <div class="member-description">El mago del backend que hace que los servidores no se caigan</div>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Servicios</h2>
+            <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+              <div class="flex flex-col gap-3 pb-3">
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDVKV7WxxvokkenZ7oEq1xMWUGujXM5o6XmymiPytPsTYynucy-fqM7m5u6eljJ2AR9joCwBIgiMwGjg1RUoRYExp9664uSU6wAdqTN_DUSFhrK0YXGXVo4JuIzIHo17HxR8EBaNEp26MPla2swi0ys8CgOCKqkM5TJYpYpiQ57yh08XkRYbi2d_F2hkmtDmHKHgr9mHye6w4pooQcpvBCqe28hov0iOEOoiZ_hZlWesp06hkH8eZRO-60M3B-8ncUwQnBR_Dlz3zY");'
+                ></div>
+                <div>
+                  <p class="text-white text-base font-medium leading-normal">Desarrollo de Apps Móviles</p>
+                  <p class="text-[#8da3ce] text-sm font-normal leading-normal">
+                    Creamos aplicaciones móviles nativas para iOS y Android, optimizadas para un rendimiento excepcional y una experiencia de usuario inigualable.
+                  </p>
+                </div>
+              </div>
+              <div class="flex flex-col gap-3 pb-3">
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCN5xNcrh3CLQG_Vfhz6WZ0K7j3pef0fsKEsCBcl75FUYV6i0CwmOXnCsqTMdbcnZ_N79oED2-ncgOuu8xKnGkVNU-sW_J2H4nL-SG2tsBqNVZATRR6NQd6usl8O5D8oYWwH4mIBtip_Dmyz495wW7WXwQCgP_EeyMp3qEyEoSPLV7wtTK9_3zJVOc03LBD62LQX7-G3NQ54ZHFOzc4G9n6CWfkL0Xbm02K6H-9e_DtisnZDYeyrprVtyQX1rE8THMcwsILTyPH3as");'
+                ></div>
+                <div>
+                  <p class="text-white text-base font-medium leading-normal">Videojuegos con Unity</p>
+                  <p class="text-[#8da3ce] text-sm font-normal leading-normal">
+                    Desarrollamos videojuegos inmersivos y de alta calidad para diversas plataformas, aprovechando al máximo las capacidades de Unity.
+                  </p>
+                </div>
+              </div>
+              <div class="flex flex-col gap-3 pb-3">
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCjBEF5MIpbdBXds3NUJ51AGHoCAOVKQX-MqnihrTlCucNcHhwh_CKq4-cqWNJUSoCyPSpwRfo6P3e5BEFqSE3ytqjHx0mmqWOuvuPQ4FearV7Be3hYXKVjwG3iJpkI4mu6luWIuRhCpe-oLi7I98KbNxpTjCcUsRPkAnGMm3I6tsDzBR-aLHf4ZVTZBMr8OSz7BZnoXM8Z5iZKiUPAlVfsxSBgX0Wiokyax7Z7uhg4w7xrwIUJ3bAhnDv9Ym5nbNes1qfpkDykeAc");'
+                ></div>
+                <div>
+                  <p class="text-white text-base font-medium leading-normal">Integraciones y Backend</p>
+                  <p class="text-[#8da3ce] text-sm font-normal leading-normal">
+                    Implementamos integraciones complejas y soluciones de backend robustas para garantizar la escalabilidad y el funcionamiento óptimo de tus aplicaciones.
+                  </p>
+                </div>
+              </div>
+              <div class="flex flex-col gap-3 pb-3">
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCPDw5InjSZiD1lP8NEVdCoaCAqka_ZSExqEJosniXoS1vBRiKejakSaswNH4ure7Fa016zd3SwaBXe2bt8le2DACALL5ett9wkXUVf3TZQpUGf3MD8anEAWnQXs_OUzyY0-4nufETh8kw16jHiYBkBRaJYK5RWO_INsrmAPL326V4tYmjKsB6IZWXr9IEXjj4UB69ELx_7vifTiGD75xVje2ES8IhZIcqUMnXJAai3BrL4S-M6eUZOy5RL16G0OfoqxfZRdfgMDUA");'
+                ></div>
+                <div>
+                  <p class="text-white text-base font-medium leading-normal">Consultoría Técnica</p>
+                  <p class="text-[#8da3ce] text-sm font-normal leading-normal">
+                    Ofrecemos asesoramiento experto en tecnologías Unity, ayudándote a tomar decisiones informadas y a optimizar tus proyectos.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div class="team-member">
-              <div class="member-name">Mateo Garcia</div>
-              <div class="member-title">El único que labura</div>
-              <div class="member-description">Literalmente el único que hace todo el trabajo mientras los otros se toman café</div>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Proyectos Destacados</h2>
+            <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+              <div
+                class="bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-video"
+                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%, rgba(0, 0, 0, 0.1) 100%, rgba(0, 0, 0, 0) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCo91xCJE_zDLLoJOdORX9f3ZicpYTKNlZdoYTezq9k2B1wvnWr8atBWtXuALP2utd-tU3uchypYkqZEG6nc9jXLs7V0k2-tjtFOxJvoHJFmgUorY1Il2sRZt9kdK9XXEkhtvYXsnOfj3SegKnVD44UkFYf0QTgx0_r4HEGO0ytcQW4hZEAfSgniJS6tnxatZU0amOeGEsBnjJxRKWQb0t06OxRIFzKgqPoaAUNuOxNHVV4xZtSv4NyISysqMKTApux9exbA1KRHyE");'
+              >
+                <p class="text-white text-base font-bold leading-tight w-4/5 line-clamp-2">Proyecto Alfa</p>
+              </div>
+              <div
+                class="bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-video"
+                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%, rgba(0, 0, 0, 0.1) 100%, rgba(0, 0, 0, 0) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAwcL80zme8Ip784tD9W7gvqgWFYKT8L1ZPUPZ-qjO7w-Ah28791uMXzRlriV7w5g05MlQO27SAPbQXCruW_tqvClrI_MTetv6KpyQODla9mfmRs3LVWLTyxcyX-55nDgSQzWa_xkgqJa-XgTkR5XvtPPVrfXIURiXU5QtXBth_lV26iw6l-P9I7-bIzw3oCxb691GcZy5A8UaJWRIdCBA2ByhH5Vza395I7DCToXg-fS56MXJ1oonXt7gcdh3osjFFSuSY2GIiGWs");'
+              >
+                <p class="text-white text-base font-bold leading-tight w-4/5 line-clamp-2">Proyecto Beta</p>
+              </div>
+              <div
+                class="bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-video"
+                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%, rgba(0, 0, 0, 0.1) 100%, rgba(0, 0, 0, 0) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBuq9wGj5i3nn_yw-e9N6rgxUKWXRoKoAumcvPRdWFDCJJkx2sOqUZtLmUpyEcfwFJAJ6CLqQWFM5LdFN9HVY9jl_qepC_eiXu3nOFM8QNd7cGyy5HMo-KEhinSbvnwgXKRmd8SYHRXZBw52O67jYxT5z6zmP2yqEqELXlDOpNLOPxbhU2I_9UhN2GeFLcYJbNw8TN0brkAOI48g6YbChV3n8Aty1_Od3ugW8Lau81IoTaTnXL8C7bOFElxgqPPEmFaa952vnBprKM");'
+              >
+                <p class="text-white text-base font-bold leading-tight w-4/5 line-clamp-2">Proyecto Gamma</p>
+              </div>
+            </div>
+            <div class="flex px-4 py-3 justify-center">
+              <button
+                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#202e4b] text-white text-sm font-bold leading-normal tracking-[0.015em]"
+              >
+                <span class="truncate">Ver más proyectos</span>
+              </button>
+            </div>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Equipo</h2>
+            <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+              <div class="flex flex-col gap-3 text-center pb-3">
+                <div class="px-4">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCsCMJU84efE5Af8cbVWPfIJ4qWDacNxFuxZW10h-5zGAI3g5XedoXCBnFe69s0N-9qX0ssLaxy6HomaUNwu1PYguxqEwMV1qOLYCdZJfXqVYYGVX-RNcCPI-oK34tmnhn6dMVwuDjug-TF__ONAU4t0fiV_XQx6MOaRarm5zce8INAmEHTwtwAM87jhfnP5Mxg_82IBoHyfrxSs4TRa4EwgC0jZePb-2BcOm2G_FWMZIRfMkwIIzlrULOzmugH8V5TkAUUkJmGQRE");'
+                  ></div>
+                </div>
+                <div>
+                  <p class="text-white text-base font-medium leading-normal">Sofía Rodríguez</p>
+                </div>
+              </div>
+              <div class="flex flex-col gap-3 text-center pb-3">
+                <div class="px-4">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD2ST16PbncBlrhy6PrFDfEcC1WOxNmFFEIbVzPf3l5POsKyYl9S7yaL-k4NaR6aEbgnBAf2i0E4NcZ5vHUFLgU83Xh6Nq8TgmlL_hicPAPjz-ZqaNM-wNlq-OkbS_RthHlCG5I8E7iyTiE0mFL8xbP1pSHtf4dXIlFrmfbmN7xt1Xnq7Daq8Ncvg6dKmN-THrFbhcjZHcB8TbRXihJd3oBf9Tkuxt7TjpW-jmvh2LdgiNLBTme-5wQMucYoCki6jdM1VpwZo7VBdY");'
+                  ></div>
+                </div>
+                <div>
+                  <p class="text-white text-base font-medium leading-normal">Carlos López</p>
+                </div>
+              </div>
+              <div class="flex flex-col gap-3 text-center pb-3">
+                <div class="px-4">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDjMv7Bo74iUPMPPDQ0W0w9Hz4_feQa3PhIKGutqTabAhwqPj2HbkPObs4SRsrksSwB320Bz87Cgw86APBqq-qB2tZNPlcCKVjjP4JHO-LHdi6WV17HgF7cX8x3BC6p2wQ_vBy-ibtGS58ihjv6EohdWW7Yqehhc1RbA1aEO8Tv8mB2p40flSr_f36lJJARifdsFHjgbiwcLZ0-BO6ksSHEe2mdx9974uo1BGurc63MYRcXebRkEXPC6ZJKCr72uyAy5JL7mYNw6Po");'
+                  ></div>
+                </div>
+                <div>
+                  <p class="text-white text-base font-medium leading-normal">Ana García</p>
+                </div>
+              </div>
+              <div class="flex flex-col gap-3 text-center pb-3">
+                <div class="px-4">
+                  <div
+                    class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDC7cWrL4GXfLpej2Nt2-CuUAs9v7ErnMnpp5tIfBCEpUDoLKze3_zNUXxXbLCgACng0nb4icvXWqePGTsxtpV6jndYIYUE-tlP2d_7HMOHM17k6felik5KZQfDCXfMoT7NaNxxZGsg7KjYQLF-iTl8S2jQIOvUDsJk6jR5xZ0BjQHQY5GzrUGBz-GbuJ4uhC4jTLm_VuY1rpp1eLokMxlZ3z1xczmHfcYRYxNfXsdpL9zw3qhB9K3-xxe6vRyRi2asQeyBcxnXoDs");'
+                  ></div>
+                </div>
+                <div>
+                  <p class="text-white text-base font-medium leading-normal">Javier Martínez</p>
+                </div>
+              </div>
+            </div>
+            <p class="text-white text-base font-normal leading-normal pb-3 pt-1 px-4 text-center">
+              Nuestro equipo está formado por profesionales apasionados y altamente cualificados, con una amplia experiencia en el desarrollo de aplicaciones y juegos con Unity.
+              Trabajamos en estrecha colaboración para ofrecer soluciones innovadoras y de alta calidad.
+            </p>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Contacto</h2>
+            <p class="text-white text-base font-normal leading-normal pb-3 pt-1 px-4">
+              Si tienes una idea en mente o necesitas asesoramiento para tu proyecto, no dudes en contactarnos. Estamos aquí para ayudarte a alcanzar tus objetivos.
+            </p>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <p class="text-white text-base font-medium leading-normal pb-2">Nombre</p>
+                <input
+                  placeholder="Tu nombre"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border border-[#2e426b] bg-[#172136] focus:border-[#2e426b] h-14 placeholder:text-[#8da3ce] p-[15px] text-base font-normal leading-normal"
+                  value=""
+                />
+              </label>
+            </div>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <p class="text-white text-base font-medium leading-normal pb-2">Email</p>
+                <input
+                  placeholder="Tu email"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border border-[#2e426b] bg-[#172136] focus:border-[#2e426b] h-14 placeholder:text-[#8da3ce] p-[15px] text-base font-normal leading-normal"
+                  value=""
+                />
+              </label>
+            </div>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <p class="text-white text-base font-medium leading-normal pb-2">Mensaje</p>
+                <textarea
+                  placeholder="Tu mensaje"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border border-[#2e426b] bg-[#172136] focus:border-[#2e426b] min-h-36 placeholder:text-[#8da3ce] p-[15px] text-base font-normal leading-normal"
+                ></textarea>
+              </label>
+            </div>
+            <div class="flex px-4 py-3 justify-start">
+              <button
+                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#2970ff] text-white text-sm font-bold leading-normal tracking-[0.015em]"
+              >
+                <span class="truncate">Enviar</span>
+              </button>
+            </div>
+            <div class="flex px-4 py-3 justify-start">
+              <button
+                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#202e4b] text-white text-sm font-bold leading-normal tracking-[0.015em]"
+              >
+                <span class="truncate">contact@quadkern.com</span>
+              </button>
             </div>
           </div>
         </div>
+        <footer class="flex justify-center">
+          <div class="flex max-w-[960px] flex-1 flex-col">
+            <footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
+              <div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
+                <a class="text-[#8da3ce] text-base font-normal leading-normal min-w-40" href="#">Inicio</a>
+                <a class="text-[#8da3ce] text-base font-normal leading-normal min-w-40" href="#">Servicios</a>
+                <a class="text-[#8da3ce] text-base font-normal leading-normal min-w-40" href="#">Proyectos</a>
+                <a class="text-[#8da3ce] text-base font-normal leading-normal min-w-40" href="#">Equipo</a>
+                <a class="text-[#8da3ce] text-base font-normal leading-normal min-w-40" href="#">Contacto</a>
+              </div>
+              <div class="flex flex-wrap justify-center gap-4">
+                <a href="#">
+                  <div class="text-[#8da3ce]" data-icon="LinkedinLogo" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"
+                      ></path>
+                    </svg>
+                  </div>
+                </a>
+                <a href="#">
+                  <div class="text-[#8da3ce]" data-icon="GithubLogo" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M208.31,75.68A59.78,59.78,0,0,0,202.93,28,8,8,0,0,0,196,24a59.75,59.75,0,0,0-48,24H124A59.75,59.75,0,0,0,76,24a8,8,0,0,0-6.93,4,59.78,59.78,0,0,0-5.38,47.68A58.14,58.14,0,0,0,56,104v8a56.06,56.06,0,0,0,48.44,55.47A39.8,39.8,0,0,0,96,192v8H72a24,24,0,0,1-24-24A40,40,0,0,0,8,136a8,8,0,0,0,0,16,24,24,0,0,1,24,24,40,40,0,0,0,40,40H96v16a8,8,0,0,0,16,0V192a24,24,0,0,1,48,0v40a8,8,0,0,0,16,0V192a39.8,39.8,0,0,0-8.44-24.53A56.06,56.06,0,0,0,216,112v-8A58.14,58.14,0,0,0,208.31,75.68ZM200,112a40,40,0,0,1-40,40H112a40,40,0,0,1-40-40v-8a41.74,41.74,0,0,1,6.9-22.48A8,8,0,0,0,80,73.83a43.81,43.81,0,0,1,.79-33.58,43.88,43.88,0,0,1,32.32,20.06A8,8,0,0,0,119.82,64h32.35a8,8,0,0,0,6.74-3.69,43.87,43.87,0,0,1,32.32-20.06A43.81,43.81,0,0,1,192,73.83a8.09,8.09,0,0,0,1,7.65A41.72,41.72,0,0,1,200,104Z"
+                      ></path>
+                    </svg>
+                  </div>
+                </a>
+              </div>
+              <p class="text-[#8da3ce] text-base font-normal leading-normal">© 2024 QuadKern. Todos los derechos reservados.</p>
+            </footer>
+          </div>
+        </footer>
       </div>
-    </footer>
-  </div>
-</body>
-</html>
+    </div>
+  </body>
+  </html>
+
