@@ -14,236 +14,7 @@
   <link rel="icon" type="image/png" href="/public/QuadkernLogo.png" />
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
-      
-      /* Efectos avanzados de shader y movimiento */
-      .shader-background {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-        background: 
-          conic-gradient(from 0deg at 50% 50%, 
-            rgba(52, 152, 219, 0.1) 0deg, 
-            rgba(155, 89, 182, 0.1) 120deg, 
-            rgba(46, 204, 113, 0.1) 240deg, 
-            rgba(52, 152, 219, 0.1) 360deg);
-        animation: rotateShader 20s linear infinite;
-      }
-      
-      .wave-effect {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-        background: 
-          radial-gradient(ellipse at 20% 70%, rgba(52, 152, 219, 0.15) 0%, transparent 70%),
-          radial-gradient(ellipse at 80% 30%, rgba(155, 89, 182, 0.15) 0%, transparent 70%),
-          radial-gradient(ellipse at 50% 90%, rgba(46, 204, 113, 0.1) 0%, transparent 70%);
-        animation: waveMotion 12s ease-in-out infinite;
-      }
-      
-      .neural-network {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        opacity: 0.08;
-        background-image: 
-          radial-gradient(circle at 25% 25%, rgba(52, 152, 219, 0.4) 2px, transparent 2px),
-          radial-gradient(circle at 75% 25%, rgba(155, 89, 182, 0.4) 2px, transparent 2px),
-          radial-gradient(circle at 25% 75%, rgba(46, 204, 113, 0.4) 2px, transparent 2px),
-          radial-gradient(circle at 75% 75%, rgba(52, 152, 219, 0.4) 2px, transparent 2px),
-          linear-gradient(45deg, transparent 49%, rgba(52, 152, 219, 0.1) 50%, transparent 51%),
-          linear-gradient(-45deg, transparent 49%, rgba(155, 89, 182, 0.1) 50%, transparent 51%);
-        background-size: 100px 100px, 100px 100px, 100px 100px, 100px 100px, 200px 200px, 200px 200px;
-        animation: neuralPulse 15s ease-in-out infinite;
-      }
-      
-      .matrix-rain {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        opacity: 0.03;
-        background: 
-          linear-gradient(0deg, transparent 0%, rgba(52, 152, 219, 0.1) 50%, transparent 100%),
-          linear-gradient(90deg, transparent 0%, rgba(155, 89, 182, 0.1) 50%, transparent 100%);
-        background-size: 20px 100%, 100% 20px;
-        animation: matrixFlow 8s linear infinite;
-      }
-      
-      .floating-particles {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        pointer-events: none;
-      }
-      
-      .particle {
-        position: absolute;
-        width: 3px;
-        height: 3px;
-        background: radial-gradient(circle, rgba(52, 152, 219, 0.8) 0%, transparent 70%);
-        border-radius: 50%;
-        animation: floatAdvanced 18s linear infinite;
-        box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
-      }
-      
-      .particle:nth-child(2) { 
-        left: 15%; 
-        animation-delay: -3s; 
-        background: radial-gradient(circle, rgba(155, 89, 182, 0.8) 0%, transparent 70%);
-        box-shadow: 0 0 10px rgba(155, 89, 182, 0.3);
-      }
-      .particle:nth-child(3) { 
-        left: 25%; 
-        animation-delay: -6s; 
-        background: radial-gradient(circle, rgba(46, 204, 113, 0.8) 0%, transparent 70%);
-        box-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
-      }
-      .particle:nth-child(4) { 
-        left: 35%; 
-        animation-delay: -9s; 
-        width: 4px;
-        height: 4px;
-      }
-      .particle:nth-child(5) { 
-        left: 45%; 
-        animation-delay: -12s; 
-        background: radial-gradient(circle, rgba(155, 89, 182, 0.8) 0%, transparent 70%);
-        box-shadow: 0 0 10px rgba(155, 89, 182, 0.3);
-      }
-      .particle:nth-child(6) { 
-        left: 55%; 
-        animation-delay: -15s; 
-        width: 2px;
-        height: 2px;
-      }
-      .particle:nth-child(7) { 
-        left: 65%; 
-        animation-delay: -18s; 
-        background: radial-gradient(circle, rgba(46, 204, 113, 0.8) 0%, transparent 70%);
-        box-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
-      }
-      .particle:nth-child(8) { 
-        left: 75%; 
-        animation-delay: -21s; 
-        width: 5px;
-        height: 5px;
-      }
-      .particle:nth-child(9) { 
-        left: 85%; 
-        animation-delay: -24s; 
-        background: radial-gradient(circle, rgba(155, 89, 182, 0.8) 0%, transparent 70%);
-        box-shadow: 0 0 10px rgba(155, 89, 182, 0.3);
-      }
-      .particle:nth-child(10) { 
-        left: 95%; 
-        animation-delay: -27s; 
-        width: 3px;
-        height: 3px;
-      }
-      
-      /* Animaciones avanzadas */
-      @keyframes rotateShader {
-        0% { 
-          transform: rotate(0deg) scale(1); 
-          filter: hue-rotate(0deg);
-        }
-        50% { 
-          transform: rotate(180deg) scale(1.1); 
-          filter: hue-rotate(180deg);
-        }
-        100% { 
-          transform: rotate(360deg) scale(1); 
-          filter: hue-rotate(360deg);
-        }
-      }
-      
-      @keyframes waveMotion {
-        0%, 100% { 
-          transform: translateX(0) translateY(0) scale(1);
-          opacity: 0.15;
-        }
-        25% { 
-          transform: translateX(20px) translateY(-10px) scale(1.05);
-          opacity: 0.2;
-        }
-        50% { 
-          transform: translateX(0) translateY(-20px) scale(1.1);
-          opacity: 0.25;
-        }
-        75% { 
-          transform: translateX(-20px) translateY(-10px) scale(1.05);
-          opacity: 0.2;
-        }
-      }
-      
-      @keyframes neuralPulse {
-        0%, 100% { 
-          opacity: 0.08;
-          transform: scale(1);
-        }
-        50% { 
-          opacity: 0.15;
-          transform: scale(1.02);
-        }
-      }
-      
-      @keyframes matrixFlow {
-        0% { 
-          transform: translateY(0) translateX(0);
-          opacity: 0.03;
-        }
-        50% { 
-          opacity: 0.08;
-        }
-        100% { 
-          transform: translateY(30px) translateX(15px);
-          opacity: 0.03;
-        }
-      }
-      
-      @keyframes floatAdvanced {
-        0% {
-          transform: translateY(100vh) translateX(0) rotate(0deg);
-          opacity: 0;
-          filter: blur(2px);
-        }
-        10% {
-          opacity: 1;
-          filter: blur(0px);
-        }
-        50% {
-          transform: translateY(50vh) translateX(50px) rotate(180deg);
-          filter: blur(1px);
-        }
-        90% {
-          opacity: 1;
-          filter: blur(0px);
-        }
-        100% {
-          transform: translateY(-10vh) translateX(100px) rotate(360deg);
-          opacity: 0;
-          filter: blur(2px);
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="/effects.css">
 </head>
 <body>
     <!-- Efectos avanzados de shader y movimiento -->
@@ -286,35 +57,33 @@
         
         <!-- Logo Landing Section -->
         <div id="inicio" class="flex items-center justify-center min-h-screen w-full pt-16">
-          <img src="/public/QuadkernLogo.png" alt="QuadKern" class="max-w-[90vw] w-[90vw] max-h-[80vh] object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/QuadkernLogo.png" alt="QuadKern" class="max-w-[90vw] w-[90vw] max-h-[80vh] object-contain hover:scale-105 transition-transform duration-300" />
         </div>
         <div class="px-40 flex flex-1 justify-center py-5">
           <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
             <div class="@container">
               <div class="@[480px]:p-4">
                 <div
-                  class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4"
-                  style='background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAmB09cPe_b2JQIVZmNud9IQDmAhhHj2rI4lw1fvJVsLLt0H2iiTVrf2dXEizTSqtlHl8Gl0WiW4lPg3PXsryU4y7KnptSE27rmW6yGUTks-GxIn0hgbpF2nUk7S4LzRJLwgY41VI_gpYeR8fGvJih3yNVsvfdF5QCn4VhUi0b4zdMAB7xKyWwrb6g0082VPD-YNx5u8Ubej4iejh1z0bYJTx_f6WaRcfgKYES_iBrcRfRiXYpoR4AGr_e9LfxiB5w-_iUCNe46qD0");'
+                  class="hero-section flex min-h-[480px] flex-col gap-6 @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4 relative overflow-hidden"
                 >
                   <div class="flex flex-col gap-2 text-center">
                     <h1
                       class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]"
                     >
-                      Creamos experiencias digitales con Unity
+                      Creamos experiencias digitales a medida
                     </h1>
                     <h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
-                      QuadKern es un estudio de desarrollo de software especializado en la creación de aplicaciones y juegos con Unity. Transformamos tus ideas en realidad,
-                      ofreciendo soluciones innovadoras y de alta calidad.
+                      En QuadKern somos un estudio de desarrollo de software especializado en la creación de aplicaciones y videojuegos. Transformamos ideas en soluciones innovadoras y de alta calidad, ofreciendo productos que combinan tecnología, diseño y usabilidad para generar un verdadero impacto.
                     </h2>
                   </div>
                   <div class="flex-wrap gap-3 flex justify-center">
                     <button
-                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#2970ff] text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]"
+                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#2970ff] text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em] hover:bg-[#1e5acc] transition-colors duration-200 shadow-lg"
                     >
                       <span class="truncate">Hablar con nosotros</span>
                     </button>
                     <button
-                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#202e4b] text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]"
+                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 @[480px]:h-12 @[480px]:px-5 border-2 border-white text-white bg-transparent text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em] hover:bg-white hover:text-[#1e3c72] transition-all duration-200"
                     >
                       <span class="truncate">Ver proyectos</span>
                     </button>
@@ -539,7 +308,10 @@
             </footer>
       </div>
     </footer>
-      </div>
   </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="/simple-effects.js"></script>
 </body>
 </html>

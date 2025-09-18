@@ -1,0 +1,289 @@
+/* Efectos avanzados de shader y movimiento para QuadKern */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hero Section con gradiente tech-inspired */
+.hero-section {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 25%, #4a69bd 50%, #6c5ce7 75%, #a29bfe 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(116, 185, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(162, 155, 254, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(108, 92, 231, 0.05) 0%, transparent 70%);
+  animation: heroGlow 8s ease-in-out infinite;
+  z-index: 1;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="heroStars" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.4"><animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite"/></circle><circle cx="80" cy="30" r="0.5" fill="%2374b9ff" opacity="0.6"><animate attributeName="opacity" values="0.3;0.9;0.3" dur="4s" repeatCount="indefinite"/></circle><circle cx="30" cy="70" r="1.5" fill="%23a29bfe" opacity="0.3"><animate attributeName="opacity" values="0.1;0.7;0.1" dur="5s" repeatCount="indefinite"/></circle><circle cx="70" cy="80" r="0.8" fill="%236c5ce7" opacity="0.5"><animate attributeName="opacity" values="0.2;0.8;0.2" dur="3.5s" repeatCount="indefinite"/></circle><circle cx="50" cy="10" r="0.3" fill="%23ffffff" opacity="0.7"><animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/></circle><circle cx="10" cy="60" r="0.6" fill="%2374b9ff" opacity="0.4"><animate attributeName="opacity" values="0.2;0.8;0.2" dur="4.5s" repeatCount="indefinite"/></circle><circle cx="90" cy="50" r="1" fill="%23a29bfe" opacity="0.3"><animate attributeName="opacity" values="0.1;0.6;0.1" dur="6s" repeatCount="indefinite"/></circle></pattern></defs><rect width="100" height="100" fill="url(%23heroStars)"/></svg>') repeat;
+  animation: starField 20s linear infinite;
+  z-index: 1;
+}
+
+.hero-section > * {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes heroGlow {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes starField {
+  0% { 
+    transform: translateY(0) translateX(0);
+  }
+  100% { 
+    transform: translateY(-100px) translateX(-50px);
+  }
+}
+
+/* Efectos de fondo tecnológicos */
+.shader-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: 
+    conic-gradient(from 0deg at 50% 50%, 
+      rgba(52, 152, 219, 0.1) 0deg, 
+      rgba(155, 89, 182, 0.1) 120deg, 
+      rgba(46, 204, 113, 0.1) 240deg, 
+      rgba(52, 152, 219, 0.1) 360deg);
+  animation: rotateShader 20s linear infinite;
+}
+
+.wave-effect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: 
+    radial-gradient(ellipse at 20% 70%, rgba(52, 152, 219, 0.15) 0%, transparent 70%),
+    radial-gradient(ellipse at 80% 30%, rgba(155, 89, 182, 0.15) 0%, transparent 70%),
+    radial-gradient(ellipse at 50% 90%, rgba(46, 204, 113, 0.1) 0%, transparent 70%);
+  animation: waveMotion 12s ease-in-out infinite;
+}
+
+.neural-network {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.08;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(52, 152, 219, 0.4) 2px, transparent 2px),
+    radial-gradient(circle at 75% 25%, rgba(155, 89, 182, 0.4) 2px, transparent 2px),
+    radial-gradient(circle at 25% 75%, rgba(46, 204, 113, 0.4) 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, rgba(52, 152, 219, 0.4) 2px, transparent 2px),
+    linear-gradient(45deg, transparent 49%, rgba(52, 152, 219, 0.1) 50%, transparent 51%),
+    linear-gradient(-45deg, transparent 49%, rgba(155, 89, 182, 0.1) 50%, transparent 51%);
+  background-size: 100px 100px, 100px 100px, 100px 100px, 100px 100px, 200px 200px, 200px 200px;
+  animation: neuralPulse 15s ease-in-out infinite;
+}
+
+.matrix-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.03;
+  background: 
+    linear-gradient(0deg, transparent 0%, rgba(52, 152, 219, 0.1) 50%, transparent 100%),
+    linear-gradient(90deg, transparent 0%, rgba(155, 89, 182, 0.1) 50%, transparent 100%);
+  background-size: 20px 100%, 100% 20px;
+  animation: matrixFlow 8s linear infinite;
+}
+
+.floating-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: radial-gradient(circle, rgba(52, 152, 219, 0.8) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: floatAdvanced 18s linear infinite;
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+}
+
+.particle:nth-child(2) { 
+  left: 15%; 
+  animation-delay: -3s; 
+  background: radial-gradient(circle, rgba(155, 89, 182, 0.8) 0%, transparent 70%);
+  box-shadow: 0 0 10px rgba(155, 89, 182, 0.3);
+}
+.particle:nth-child(3) { 
+  left: 25%; 
+  animation-delay: -6s; 
+  background: radial-gradient(circle, rgba(46, 204, 113, 0.8) 0%, transparent 70%);
+  box-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+}
+.particle:nth-child(4) { 
+  left: 35%; 
+  animation-delay: -9s; 
+  width: 4px;
+  height: 4px;
+}
+.particle:nth-child(5) { 
+  left: 45%; 
+  animation-delay: -12s; 
+  background: radial-gradient(circle, rgba(155, 89, 182, 0.8) 0%, transparent 70%);
+  box-shadow: 0 0 10px rgba(155, 89, 182, 0.3);
+}
+.particle:nth-child(6) { 
+  left: 55%; 
+  animation-delay: -15s; 
+  width: 2px;
+  height: 2px;
+}
+.particle:nth-child(7) { 
+  left: 65%; 
+  animation-delay: -18s; 
+  background: radial-gradient(circle, rgba(46, 204, 113, 0.8) 0%, transparent 70%);
+  box-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+}
+.particle:nth-child(8) { 
+  left: 75%; 
+  animation-delay: -21s; 
+  width: 5px;
+  height: 5px;
+}
+.particle:nth-child(9) { 
+  left: 85%; 
+  animation-delay: -24s; 
+  background: radial-gradient(circle, rgba(155, 89, 182, 0.8) 0%, transparent 70%);
+  box-shadow: 0 0 10px rgba(155, 89, 182, 0.3);
+}
+.particle:nth-child(10) { 
+  left: 95%; 
+  animation-delay: -27s; 
+  width: 3px;
+  height: 3px;
+}
+
+/* Animaciones avanzadas */
+@keyframes rotateShader {
+  0% { 
+    transform: rotate(0deg) scale(1); 
+    filter: hue-rotate(0deg);
+  }
+  50% { 
+    transform: rotate(180deg) scale(1.1); 
+    filter: hue-rotate(180deg);
+  }
+  100% { 
+    transform: rotate(360deg) scale(1); 
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes waveMotion {
+  0%, 100% { 
+    transform: translateX(0) translateY(0) scale(1);
+    opacity: 0.15;
+  }
+  25% { 
+    transform: translateX(20px) translateY(-10px) scale(1.05);
+    opacity: 0.2;
+  }
+  50% { 
+    transform: translateX(0) translateY(-20px) scale(1.1);
+    opacity: 0.25;
+  }
+  75% { 
+    transform: translateX(-20px) translateY(-10px) scale(1.05);
+    opacity: 0.2;
+  }
+}
+
+@keyframes neuralPulse {
+  0%, 100% { 
+    opacity: 0.08;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.15;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes matrixFlow {
+  0% { 
+    transform: translateY(0) translateX(0);
+    opacity: 0.03;
+  }
+  50% { 
+    opacity: 0.08;
+  }
+  100% { 
+    transform: translateY(30px) translateX(15px);
+    opacity: 0.03;
+  }
+}
+
+@keyframes floatAdvanced {
+  0% {
+    transform: translateY(100vh) translateX(0) rotate(0deg);
+    opacity: 0;
+    filter: blur(2px);
+  }
+  10% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+  50% {
+    transform: translateY(50vh) translateX(50px) rotate(180deg);
+    filter: blur(1px);
+  }
+  90% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+  100% {
+    transform: translateY(-10vh) translateX(100px) rotate(360deg);
+    opacity: 0;
+    filter: blur(2px);
+  }
+}
