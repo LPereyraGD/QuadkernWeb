@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+  <meta charset="UTF-8" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
     <link
       rel="stylesheet"
@@ -11,36 +11,283 @@
     />
 
     <title>QuadKern</title>
-    <link rel="icon" type="image/png" href="./QuadkernLogo.png" />
+  <link rel="icon" type="image/png" href="./QuadkernLogo.png" />
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  </head>
-  <body>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      /* Efectos avanzados de shader y movimiento */
+      .shader-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        background: 
+          conic-gradient(from 0deg at 50% 50%, 
+            rgba(52, 152, 219, 0.1) 0deg, 
+            rgba(155, 89, 182, 0.1) 120deg, 
+            rgba(46, 204, 113, 0.1) 240deg, 
+            rgba(52, 152, 219, 0.1) 360deg);
+        animation: rotateShader 20s linear infinite;
+      }
+      
+      .wave-effect {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        background: 
+          radial-gradient(ellipse at 20% 70%, rgba(52, 152, 219, 0.15) 0%, transparent 70%),
+          radial-gradient(ellipse at 80% 30%, rgba(155, 89, 182, 0.15) 0%, transparent 70%),
+          radial-gradient(ellipse at 50% 90%, rgba(46, 204, 113, 0.1) 0%, transparent 70%);
+        animation: waveMotion 12s ease-in-out infinite;
+      }
+      
+      .neural-network {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        opacity: 0.08;
+        background-image: 
+          radial-gradient(circle at 25% 25%, rgba(52, 152, 219, 0.4) 2px, transparent 2px),
+          radial-gradient(circle at 75% 25%, rgba(155, 89, 182, 0.4) 2px, transparent 2px),
+          radial-gradient(circle at 25% 75%, rgba(46, 204, 113, 0.4) 2px, transparent 2px),
+          radial-gradient(circle at 75% 75%, rgba(52, 152, 219, 0.4) 2px, transparent 2px),
+          linear-gradient(45deg, transparent 49%, rgba(52, 152, 219, 0.1) 50%, transparent 51%),
+          linear-gradient(-45deg, transparent 49%, rgba(155, 89, 182, 0.1) 50%, transparent 51%);
+        background-size: 100px 100px, 100px 100px, 100px 100px, 100px 100px, 200px 200px, 200px 200px;
+        animation: neuralPulse 15s ease-in-out infinite;
+      }
+      
+      .matrix-rain {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        opacity: 0.03;
+        background: 
+          linear-gradient(0deg, transparent 0%, rgba(52, 152, 219, 0.1) 50%, transparent 100%),
+          linear-gradient(90deg, transparent 0%, rgba(155, 89, 182, 0.1) 50%, transparent 100%);
+        background-size: 20px 100%, 100% 20px;
+        animation: matrixFlow 8s linear infinite;
+      }
+      
+      .floating-particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+      }
+      
+      .particle {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background: radial-gradient(circle, rgba(52, 152, 219, 0.8) 0%, transparent 70%);
+        border-radius: 50%;
+        animation: floatAdvanced 18s linear infinite;
+        box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+      }
+      
+      .particle:nth-child(2) { 
+        left: 15%; 
+        animation-delay: -3s; 
+        background: radial-gradient(circle, rgba(155, 89, 182, 0.8) 0%, transparent 70%);
+        box-shadow: 0 0 10px rgba(155, 89, 182, 0.3);
+      }
+      .particle:nth-child(3) { 
+        left: 25%; 
+        animation-delay: -6s; 
+        background: radial-gradient(circle, rgba(46, 204, 113, 0.8) 0%, transparent 70%);
+        box-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+      }
+      .particle:nth-child(4) { 
+        left: 35%; 
+        animation-delay: -9s; 
+        width: 4px;
+        height: 4px;
+      }
+      .particle:nth-child(5) { 
+        left: 45%; 
+        animation-delay: -12s; 
+        background: radial-gradient(circle, rgba(155, 89, 182, 0.8) 0%, transparent 70%);
+        box-shadow: 0 0 10px rgba(155, 89, 182, 0.3);
+      }
+      .particle:nth-child(6) { 
+        left: 55%; 
+        animation-delay: -15s; 
+        width: 2px;
+        height: 2px;
+      }
+      .particle:nth-child(7) { 
+        left: 65%; 
+        animation-delay: -18s; 
+        background: radial-gradient(circle, rgba(46, 204, 113, 0.8) 0%, transparent 70%);
+        box-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+      }
+      .particle:nth-child(8) { 
+        left: 75%; 
+        animation-delay: -21s; 
+        width: 5px;
+        height: 5px;
+      }
+      .particle:nth-child(9) { 
+        left: 85%; 
+        animation-delay: -24s; 
+        background: radial-gradient(circle, rgba(155, 89, 182, 0.8) 0%, transparent 70%);
+        box-shadow: 0 0 10px rgba(155, 89, 182, 0.3);
+      }
+      .particle:nth-child(10) { 
+        left: 95%; 
+        animation-delay: -27s; 
+        width: 3px;
+        height: 3px;
+      }
+      
+      /* Animaciones avanzadas */
+      @keyframes rotateShader {
+        0% { 
+          transform: rotate(0deg) scale(1); 
+          filter: hue-rotate(0deg);
+        }
+        50% { 
+          transform: rotate(180deg) scale(1.1); 
+          filter: hue-rotate(180deg);
+        }
+        100% { 
+          transform: rotate(360deg) scale(1); 
+          filter: hue-rotate(360deg);
+        }
+      }
+      
+      @keyframes waveMotion {
+        0%, 100% { 
+          transform: translateX(0) translateY(0) scale(1);
+          opacity: 0.15;
+        }
+        25% { 
+          transform: translateX(20px) translateY(-10px) scale(1.05);
+          opacity: 0.2;
+        }
+        50% { 
+          transform: translateX(0) translateY(-20px) scale(1.1);
+          opacity: 0.25;
+        }
+        75% { 
+          transform: translateX(-20px) translateY(-10px) scale(1.05);
+          opacity: 0.2;
+        }
+      }
+      
+      @keyframes neuralPulse {
+        0%, 100% { 
+          opacity: 0.08;
+          transform: scale(1);
+        }
+        50% { 
+          opacity: 0.15;
+          transform: scale(1.02);
+        }
+      }
+      
+      @keyframes matrixFlow {
+        0% { 
+          transform: translateY(0) translateX(0);
+          opacity: 0.03;
+        }
+        50% { 
+          opacity: 0.08;
+        }
+        100% { 
+          transform: translateY(30px) translateX(15px);
+          opacity: 0.03;
+        }
+      }
+      
+      @keyframes floatAdvanced {
+        0% {
+          transform: translateY(100vh) translateX(0) rotate(0deg);
+          opacity: 0;
+          filter: blur(2px);
+        }
+        10% {
+          opacity: 1;
+          filter: blur(0px);
+        }
+        50% {
+          transform: translateY(50vh) translateX(50px) rotate(180deg);
+          filter: blur(1px);
+        }
+        90% {
+          opacity: 1;
+          filter: blur(0px);
+        }
+        100% {
+          transform: translateY(-10vh) translateX(100px) rotate(360deg);
+          opacity: 0;
+          filter: blur(2px);
+        }
+      }
+    </style>
+</head>
+<body>
+    <!-- Efectos avanzados de shader y movimiento -->
+    <div class="shader-background"></div>
+    <div class="wave-effect"></div>
+    <div class="neural-network"></div>
+    <div class="matrix-rain"></div>
+    <div class="floating-particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+    
     <div
       class="relative flex h-auto min-h-screen w-full flex-col bg-[#0f1624] dark group/design-root overflow-x-hidden"
-      style='font-family: "Space Grotesk", "Noto Sans", sans-serif;'
+      style='font-family: "Space Grotesk", "Noto Sans", sans-serif; z-index: 2; position: relative;'
     >
       <div class="layout-container flex h-full grow flex-col">
-        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#202e4b] px-10 py-3">
-          <div class="flex items-center gap-4 text-white">
-            <img src="./QuadkernLogo.png" alt="QuadKern" class="h-6 w-auto" />
-            <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">QuadKern</h2>
+        <!-- Header fijo arriba -->
+        <header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#202e4b] px-10 py-3 bg-[#0f1624]/90 backdrop-blur-md">
+          <div class="flex items-center gap-9">
+            <a class="text-white text-sm font-medium leading-normal hover:text-[#2970ff] transition-colors duration-200" href="#inicio">Inicio</a>
+            <a class="text-white text-sm font-medium leading-normal hover:text-[#2970ff] transition-colors duration-200" href="#servicios">Servicios</a>
+            <a class="text-white text-sm font-medium leading-normal hover:text-[#2970ff] transition-colors duration-200" href="#proyectos">Proyectos</a>
+            <a class="text-white text-sm font-medium leading-normal hover:text-[#2970ff] transition-colors duration-200" href="#equipo">Equipo</a>
           </div>
-          <div class="flex flex-1 justify-end gap-8">
-            <div class="flex items-center gap-9">
-              <a class="text-white text-sm font-medium leading-normal" href="#">Inicio</a>
-              <a class="text-white text-sm font-medium leading-normal" href="#">Servicios</a>
-              <a class="text-white text-sm font-medium leading-normal" href="#">Proyectos</a>
-              <a class="text-white text-sm font-medium leading-normal" href="#">Equipo</a>
-              <a class="text-white text-sm font-medium leading-normal" href="#">Contacto</a>
-            </div>
-            <button
-              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#2970ff] text-white text-sm font-bold leading-normal tracking-[0.015em]"
-            >
-              <span class="truncate">Contáctanos</span>
-            </button>
-          </div>
+          <a href="#contacto"
+            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#2970ff] text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#1e5acc] transition-colors duration-200"
+          >
+            <span class="truncate">Contáctanos</span>
+          </a>
         </header>
+    
+        <!-- Logo Landing Section -->
+        <div id="inicio" class="flex items-center justify-center min-h-screen w-full pt-16">
+          <img src="./QuadkernLogo.png" alt="QuadKern" class="max-w-[90vw] w-[90vw] max-h-[80vh] object-contain hover:scale-105 transition-transform duration-300" />
+        </div>
         <div class="px-40 flex flex-1 justify-center py-5">
           <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
             <div class="@container">
@@ -75,7 +322,7 @@
                 </div>
               </div>
             </div>
-            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Servicios</h2>
+            <h2 id="servicios" class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Servicios</h2>
             <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
               <div class="flex flex-col gap-3 pb-3">
                 <div
@@ -126,7 +373,7 @@
                 </div>
               </div>
             </div>
-            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Proyectos Destacados</h2>
+            <h2 id="proyectos" class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Proyectos Destacados</h2>
             <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
               <div
                 class="bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-video"
@@ -154,7 +401,7 @@
                 <span class="truncate">Ver más proyectos</span>
               </button>
             </div>
-            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Equipo</h2>
+            <h2 id="equipo" class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Equipo</h2>
             <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
               <div class="flex flex-col gap-3 text-center pb-3">
                 <div class="px-4">
@@ -164,7 +411,8 @@
                   ></div>
                 </div>
                 <div>
-                  <p class="text-white text-base font-medium leading-normal">Sofía Rodríguez</p>
+                  <p class="text-white text-base font-medium leading-normal">Augusto Canepa</p>
+                  <p class="text-[#8da3ce] text-sm font-normal leading-normal">CEO</p>
                 </div>
               </div>
               <div class="flex flex-col gap-3 text-center pb-3">
@@ -175,7 +423,8 @@
                   ></div>
                 </div>
                 <div>
-                  <p class="text-white text-base font-medium leading-normal">Carlos López</p>
+                  <p class="text-white text-base font-medium leading-normal">Lautaro Pereyra</p>
+                  <p class="text-[#8da3ce] text-sm font-normal leading-normal">CTO</p>
                 </div>
               </div>
               <div class="flex flex-col gap-3 text-center pb-3">
@@ -186,7 +435,8 @@
                   ></div>
                 </div>
                 <div>
-                  <p class="text-white text-base font-medium leading-normal">Ana García</p>
+                  <p class="text-white text-base font-medium leading-normal">Nicolas Ferraro</p>
+                  <p class="text-[#8da3ce] text-sm font-normal leading-normal">Master BE</p>
                 </div>
               </div>
               <div class="flex flex-col gap-3 text-center pb-3">
@@ -197,7 +447,8 @@
                   ></div>
                 </div>
                 <div>
-                  <p class="text-white text-base font-medium leading-normal">Javier Martínez</p>
+                  <p class="text-white text-base font-medium leading-normal">Mateo Garcia</p>
+                  <p class="text-[#8da3ce] text-sm font-normal leading-normal">El único que labura</p>
                 </div>
               </div>
             </div>
@@ -205,7 +456,7 @@
               Nuestro equipo está formado por profesionales apasionados y altamente cualificados, con una amplia experiencia en el desarrollo de aplicaciones y juegos con Unity.
               Trabajamos en estrecha colaboración para ofrecer soluciones innovadoras y de alta calidad.
             </p>
-            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Contacto</h2>
+            <h2 id="contacto" class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Contacto</h2>
             <p class="text-white text-base font-normal leading-normal pb-3 pt-1 px-4">
               Si tienes una idea en mente o necesitas asesoramiento para tu proyecto, no dudes en contactarnos. Estamos aquí para ayudarte a alcanzar tus objetivos.
             </p>
@@ -286,10 +537,10 @@
               </div>
               <p class="text-[#8da3ce] text-base font-normal leading-normal">© 2024 QuadKern. Todos los derechos reservados.</p>
             </footer>
-          </div>
-        </footer>
       </div>
-    </div>
-  </body>
-  </html>
+    </footer>
+      </div>
+  </div>
+</body>
+</html>
 
