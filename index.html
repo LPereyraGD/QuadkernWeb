@@ -53,8 +53,8 @@
           >
             <span class="truncate">Contáctanos</span>
           </a>
-        </header>
-        
+    </header>
+    
         <!-- Logo Landing Section -->
         <div id="inicio" class="flex items-center justify-center min-h-screen w-full pt-16">
           <img src="/QuadkernLogo.png" alt="QuadKern" class="max-w-[90vw] w-[90vw] max-h-[80vh] object-contain hover:scale-105 transition-transform duration-300" />
@@ -91,186 +91,374 @@
                 </div>
               </div>
             </div>
-            <h2 id="servicios" class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Servicios</h2>
-            <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
-              <div class="flex flex-col gap-3 pb-3">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDVKV7WxxvokkenZ7oEq1xMWUGujXM5o6XmymiPytPsTYynucy-fqM7m5u6eljJ2AR9joCwBIgiMwGjg1RUoRYExp9664uSU6wAdqTN_DUSFhrK0YXGXVo4JuIzIHo17HxR8EBaNEp26MPla2swi0ys8CgOCKqkM5TJYpYpiQ57yh08XkRYbi2d_F2hkmtDmHKHgr9mHye6w4pooQcpvBCqe28hov0iOEOoiZ_hZlWesp06hkH8eZRO-60M3B-8ncUwQnBR_Dlz3zY");'
-                ></div>
-                <div>
-                  <p class="text-white text-base font-medium leading-normal">Desarrollo de Apps Móviles</p>
-                  <p class="text-[#8da3ce] text-sm font-normal leading-normal">
-                    Creamos aplicaciones móviles nativas para iOS y Android, optimizadas para un rendimiento excepcional y una experiencia de usuario inigualable.
+            <div class="services-section">
+              <h2 id="servicios" class="text-white text-[32px] font-black leading-tight tracking-[-0.015em] text-center pb-8 pt-5 relative z-10">Nuestros Servicios</h2>
+              <div class="services-grid">
+                <div class="service-card" data-service="mobile">
+                  <div class="service-card-content">
+                    <div class="service-icon">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 2C5.89543 2 5 2.89543 5 4V20C5 21.1046 5.89543 22 7 22H17C18.1046 22 19 21.1046 19 20V4C19 2.89543 18.1046 2 17 2H7Z" stroke="currentColor" stroke-width="2" fill="white"/>
+                        <path d="M12 18H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="white"/>
+                        <rect x="7" y="6" width="10" height="8" rx="1" fill="#3498db"/>
+                      </svg>
+                    </div>
+                    <h3 class="service-title">Desarrollo de Apps Móviles</h3>
+                    <p class="service-description">
+                      Creamos aplicaciones móviles nativas y cross-platform con tecnologías de vanguardia. Diseñamos experiencias intuitivas que conectan con tus usuarios.
+                    </p>
+                    <div class="service-tech-stack">
+                      <span class="tech-tag">React Native</span>
+                      <span class="tech-tag">Flutter</span>
+                      <span class="tech-tag">Swift</span>
+                      <span class="tech-tag">Kotlin</span>
+                    </div>
+                    <a href="#contacto" class="service-cta">Consultar proyecto</a>
+                  </div>
+                </div>
+                
+                <div class="service-card" data-service="games">
+                  <div class="service-card-content">
+                    <div class="service-icon">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 2V8H2V16H8V22H16V16H22V8H16V2H8Z" fill="white"/>
+                        <circle cx="6" cy="12" r="2" fill="#6c5ce7"/>
+                        <circle cx="18" cy="12" r="2" fill="#6c5ce7"/>
+                        <rect x="10" y="4" width="4" height="4" rx="1" fill="#3498db"/>
+                        <rect x="10" y="16" width="4" height="4" rx="1" fill="#3498db"/>
+                      </svg>
+                    </div>
+                    <h3 class="service-title">Videojuegos & Experiencias Interactivas</h3>
+                    <p class="service-description">
+                      Desarrollamos videojuegos inmersivos y experiencias interactivas que cautivan. Desde móviles hasta PC, creamos mundos digitales memorables.
+                    </p>
+                    <div class="service-tech-stack">
+                      <span class="tech-tag">Unity 3D</span>
+                      <span class="tech-tag">C#</span>
+                      <span class="tech-tag">WebGL</span>
+                      <span class="tech-tag">AR/VR</span>
+                    </div>
+                    <a href="#contacto" class="service-cta">Ver portfolio</a>
+                  </div>
+                </div>
+                
+                <div class="service-card" data-service="backend">
+                  <div class="service-card-content">
+                    <div class="service-icon">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="3" width="20" height="4" rx="2" fill="white"/>
+                        <rect x="2" y="10" width="20" height="4" rx="2" fill="white"/>
+                        <rect x="2" y="17" width="20" height="4" rx="2" fill="white"/>
+                        <circle cx="6" cy="5" r="1" fill="#2ecc71"/>
+                        <circle cx="6" cy="12" r="1" fill="#3498db"/>
+                        <circle cx="6" cy="19" r="1" fill="#e74c3c"/>
+                        <rect x="10" y="4" width="8" height="2" rx="1" fill="#ecf0f1"/>
+                        <rect x="10" y="11" width="6" height="2" rx="1" fill="#ecf0f1"/>
+                        <rect x="10" y="18" width="10" height="2" rx="1" fill="#ecf0f1"/>
+                      </svg>
+                    </div>
+                    <h3 class="service-title">Backend & Cloud Solutions</h3>
+                    <p class="service-description">
+                      Arquitecturas robustas y escalables que soportan millones de usuarios. Implementamos APIs, microservicios y soluciones cloud de alto rendimiento.
+                    </p>
+                    <div class="service-tech-stack">
+                      <span class="tech-tag">Node.js</span>
+                      <span class="tech-tag">Python</span>
+                      <span class="tech-tag">AWS</span>
+                      <span class="tech-tag">Docker</span>
+                    </div>
+                    <a href="#contacto" class="service-cta">Discutir arquitectura</a>
+                  </div>
+                </div>
+                
+                <div class="service-card" data-service="consulting">
+                  <div class="service-card-content">
+                    <div class="service-icon">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2" fill="none"/>
+                        <path d="M12 6V12L16 14" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+                        <circle cx="12" cy="12" r="2" fill="#f39c12"/>
+                        <circle cx="8" cy="8" r="1" fill="#3498db"/>
+                        <circle cx="16" cy="8" r="1" fill="#e74c3c"/>
+                        <circle cx="8" cy="16" r="1" fill="#2ecc71"/>
+                        <circle cx="16" cy="16" r="1" fill="#9b59b6"/>
+                      </svg>
+                    </div>
+                    <h3 class="service-title">Consultoría Técnica Especializada</h3>
+                    <p class="service-description">
+                      Asesoramiento experto en tecnologías emergentes y optimización de proyectos. Te ayudamos a tomar decisiones técnicas inteligentes y estratégicas.
+                    </p>
+                    <div class="service-tech-stack">
+                      <span class="tech-tag">Architecture</span>
+                      <span class="tech-tag">Performance</span>
+                      <span class="tech-tag">Security</span>
+                      <span class="tech-tag">Scalability</span>
+                    </div>
+                    <a href="#contacto" class="service-cta">Agendar consulta</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="projects-section">
+              <h2 id="proyectos" class="text-white text-[32px] font-black leading-tight tracking-[-0.015em] text-center pb-8 pt-5 relative z-10">Proyectos Destacados</h2>
+              <div class="projects-grid">
+                <div class="project-card" data-type="game" data-project="alpha">
+                  <div class="project-image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCo91xCJE_zDLLoJOdORX9f3ZicpYTKNlZdoYTezq9k2B1wvnWr8atBWtXuALP2utd-tU3uchypYkqZEG6nc9jXLs7V0k2-tjtFOxJvoHJFmgUorY1Il2sRZt9kdK9XXEkhtvYXsnOfj3SegKnVD44UkFYf0QTgx0_r4HEGO0ytcQW4hZEAfSgniJS6tnxatZU0amOeGEsBnjJxRKWQb0t06OxRIFzKgqPoaAUNuOxNHVV4xZtSv4NyISysqMKTApux9exbA1KRHyE");'>
+                    <div class="project-overlay">
+                      <button class="project-preview-btn">🎮 Ver Demo</button>
+                    </div>
+                  </div>
+                  <div class="project-content">
+                    <h3 class="project-title">Proyecto Alpha</h3>
+                    <p class="project-description">
+                      Videojuego inmersivo de aventuras con mecánicas innovadoras y gráficos de última generación. Una experiencia única que combina narrativa profunda con gameplay dinámico.
+                    </p>
+                    <div class="project-tech-stack">
+                      <span class="project-tech-tag">Unity 3D</span>
+                      <span class="project-tech-tag">C#</span>
+                      <span class="project-tech-tag">Blender</span>
+                      <span class="project-tech-tag">Photon</span>
+                    </div>
+                    <div class="project-stats">
+                      <div class="project-stat">
+                        <span class="project-stat-value">8M</span>
+                        <span class="project-stat-label">Downloads</span>
+                      </div>
+                      <div class="project-stat">
+                        <span class="project-stat-value">4.8</span>
+                        <span class="project-stat-label">Rating</span>
+                      </div>
+                      <div class="project-stat">
+                        <span class="project-stat-value">12</span>
+                        <span class="project-stat-label">Meses</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="project-card" data-type="app" data-project="beta">
+                  <div class="project-image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAwcL80zme8Ip784tD9W7gvqgWFYKT8L1ZPUPZ-qjO7w-Ah28791uMXzRlriV7w5g05MlQO27SAPbQXCruW_tqvClrI_MTetv6KpyQODla9mfmRs3LVWLTyxcyX-55nDgSQzWa_xkgqJa-XgTkR5XvtPPVrfXIURiXU5QtXBth_lV26iw6l-P9I7-bIzw3oCxb691GcZy5A8UaJWRIdCBA2ByhH5Vza395I7DCToXg-fS56MXJ1oonXt7gcdh3osjFFSuSY2GIiGWs");'>
+                    <div class="project-overlay">
+                      <button class="project-preview-btn">📱 Ver App</button>
+                    </div>
+                  </div>
+                  <div class="project-content">
+                    <h3 class="project-title">Proyecto Beta</h3>
+                    <p class="project-description">
+                      Aplicación móvil revolucionaria que optimiza la productividad empresarial. Interface intuitiva con IA integrada para automatizar tareas complejas.
+                    </p>
+                    <div class="project-tech-stack">
+                      <span class="project-tech-tag">React Native</span>
+                      <span class="project-tech-tag">Node.js</span>
+                      <span class="project-tech-tag">MongoDB</span>
+                      <span class="project-tech-tag">AWS</span>
+                    </div>
+                    <div class="project-stats">
+                      <div class="project-stat">
+                        <span class="project-stat-value">2.5M</span>
+                        <span class="project-stat-label">Usuarios</span>
+                      </div>
+                      <div class="project-stat">
+                        <span class="project-stat-value">4.9</span>
+                        <span class="project-stat-label">Rating</span>
+                      </div>
+                      <div class="project-stat">
+                        <span class="project-stat-value">8</span>
+                        <span class="project-stat-label">Meses</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="projects-cta">
+                <a href="#contacto" class="projects-cta-btn">Ver Todos los Proyectos</a>
+              </div>
+            </div>
+            <div class="team-section">
+              <h2 id="equipo" class="text-white text-[32px] font-black leading-tight tracking-[-0.015em] text-center pb-8 pt-5 relative z-10">Nuestro Equipo</h2>
+              <div class="team-grid">
+                <div class="team-connections">
+                  <div class="team-connection-line" style="top: 50%; left: 25%; width: 50%;"></div>
+                  <div class="team-connection-line" style="top: 25%; left: 50%; width: 1px; height: 50%; transform: rotate(90deg);"></div>
+                </div>
+                
+                <div class="team-member" data-member="augusto">
+                  <div class="team-avatar">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsCMJU84efE5Af8cbVWPfIJ4qWDacNxFuxZW10h-5zGAI3g5XedoXCBnFe69s0N-9qX0ssLaxy6HomaUNwu1PYguxqEwMV1qOLYCdZJfXqVYYGVX-RNcCPI-oK34tmnhn6dMVwuDjug-TF__ONAU4t0fiV_XQx6MOaRarm5zce8INAmEHTwtwAM87jhfnP5Mxg_82IBoHyfrxSs4TRa4EwgC0jZePb-2BcOm2G_FWMZIRfMkwIIzlrULOzmugH8V5TkAUUkJmGQRE" alt="Augusto Canepa" />
+                  </div>
+                  <h3 class="team-name">Augusto Canepa</h3>
+                  <p class="team-role">CEO & Founder</p>
+                  <p class="team-description">
+                    Visionario y líder estratégico con más de 8 años de experiencia en tecnología. Experto en gestión de equipos y desarrollo de productos innovadores.
                   </p>
+                  <div class="team-skills">
+                    <p class="team-skills-title">Especialidades</p>
+                    <div class="team-tech-stack">
+                      <span class="team-tech-tag">Leadership</span>
+                      <span class="team-tech-tag">Strategy</span>
+                      <span class="team-tech-tag">Unity</span>
+                      <span class="team-tech-tag">Business</span>
+                    </div>
+                    <div class="team-stats">
+                      <div class="team-stat">
+                        <span class="team-stat-value">8+</span>
+                        <span class="team-stat-label">Años</span>
+                      </div>
+                      <div class="team-stat">
+                        <span class="team-stat-value">25+</span>
+                        <span class="team-stat-label">Proyectos</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="flex flex-col gap-3 pb-3">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCN5xNcrh3CLQG_Vfhz6WZ0K7j3pef0fsKEsCBcl75FUYV6i0CwmOXnCsqTMdbcnZ_N79oED2-ncgOuu8xKnGkVNU-sW_J2H4nL-SG2tsBqNVZATRR6NQd6usl8O5D8oYWwH4mIBtip_Dmyz495wW7WXwQCgP_EeyMp3qEyEoSPLV7wtTK9_3zJVOc03LBD62LQX7-G3NQ54ZHFOzc4G9n6CWfkL0Xbm02K6H-9e_DtisnZDYeyrprVtyQX1rE8THMcwsILTyPH3as");'
-                ></div>
-                <div>
-                  <p class="text-white text-base font-medium leading-normal">Videojuegos con Unity</p>
-                  <p class="text-[#8da3ce] text-sm font-normal leading-normal">
-                    Desarrollamos videojuegos inmersivos y de alta calidad para diversas plataformas, aprovechando al máximo las capacidades de Unity.
+                
+                <div class="team-member" data-member="lautaro">
+                  <div class="team-avatar">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2ST16PbncBlrhy6PrFDfEcC1WOxNmFFEIbVzPf3l5POsKyYl9S7yaL-k4NaR6aEbgnBAf2i0E4NcZ5vHUFLgU83Xh6Nq8TgmlL_hicPAPjz-ZqaNM-wNlq-OkbS_RthHlCG5I8E7iyTiE0mFL8xbP1pSHtf4dXIlFrmfbmN7xt1Xnq7Daq8Ncvg6dKmN-THrFbhcjZHcB8TbRXihJd3oBf9Tkuxt7TjpW-jmvh2LdgiNLBTme-5wQMucYoCki6jdM1VpwZo7VBdY" alt="Lautaro Pereyra" />
+                  </div>
+                  <h3 class="team-name">Lautaro Pereyra</h3>
+                  <p class="team-role">CTO & Co-Founder</p>
+                  <p class="team-description">
+                    Arquitecto de software senior especializado en sistemas escalables. Maestro en tecnologías de vanguardia y optimización de rendimiento.
                   </p>
+                  <div class="team-skills">
+                    <p class="team-skills-title">Tech Stack</p>
+                    <div class="team-tech-stack">
+                      <span class="team-tech-tag">Unity</span>
+                      <span class="team-tech-tag">C#</span>
+                      <span class="team-tech-tag">Cloud</span>
+                      <span class="team-tech-tag">DevOps</span>
+                    </div>
+                    <div class="team-stats">
+                      <div class="team-stat">
+                        <span class="team-stat-value">6+</span>
+                        <span class="team-stat-label">Años</span>
+                      </div>
+                      <div class="team-stat">
+                        <span class="team-stat-value">30+</span>
+                        <span class="team-stat-label">Apps</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="flex flex-col gap-3 pb-3">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCjBEF5MIpbdBXds3NUJ51AGHoCAOVKQX-MqnihrTlCucNcHhwh_CKq4-cqWNJUSoCyPSpwRfo6P3e5BEFqSE3ytqjHx0mmqWOuvuPQ4FearV7Be3hYXKVjwG3iJpkI4mu6luWIuRhCpe-oLi7I98KbNxpTjCcUsRPkAnGMm3I6tsDzBR-aLHf4ZVTZBMr8OSz7BZnoXM8Z5iZKiUPAlVfsxSBgX0Wiokyax7Z7uhg4w7xrwIUJ3bAhnDv9Ym5nbNes1qfpkDykeAc");'
-                ></div>
-                <div>
-                  <p class="text-white text-base font-medium leading-normal">Integraciones y Backend</p>
-                  <p class="text-[#8da3ce] text-sm font-normal leading-normal">
-                    Implementamos integraciones complejas y soluciones de backend robustas para garantizar la escalabilidad y el funcionamiento óptimo de tus aplicaciones.
+                
+                <div class="team-member" data-member="nicolas">
+                  <div class="team-avatar">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjMv7Bo74iUPMPPDQ0W0w9Hz4_feQa3PhIKGutqTabAhwqPj2HbkPObs4SRsrksSwB320Bz87Cgw86APBqq-qB2tZNPlcCKVjjP4JHO-LHdi6WV17HgF7cX8x3BC6p2wQ_vBy-ibtGS58ihjv6EohdWW7Yqehhc1RbA1aEO8Tv8mB2p40flSr_f36lJJARifdsFHjgbiwcLZ0-BO6ksSHEe2mdx9974uo1BGurc63MYRcXebRkEXPC6ZJKCr72uyAy5JL7mYNw6Po" alt="Nicolas Ferraro" />
+                  </div>
+                  <h3 class="team-name">Nicolas Ferraro</h3>
+                  <p class="team-role">Master Backend Engineer</p>
+                  <p class="team-description">
+                    Ingeniero backend de élite con dominio absoluto en arquitecturas distribuidas. Especialista en APIs de alto rendimiento y bases de datos.
                   </p>
+                  <div class="team-skills">
+                    <p class="team-skills-title">Backend Mastery</p>
+                    <div class="team-tech-stack">
+                      <span class="team-tech-tag">Node.js</span>
+                      <span class="team-tech-tag">Python</span>
+                      <span class="team-tech-tag">SQL</span>
+                      <span class="team-tech-tag">APIs</span>
+                    </div>
+                    <div class="team-stats">
+                      <div class="team-stat">
+                        <span class="team-stat-value">5+</span>
+                        <span class="team-stat-label">Años</span>
+                      </div>
+                      <div class="team-stat">
+                        <span class="team-stat-value">50+</span>
+                        <span class="team-stat-label">APIs</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="flex flex-col gap-3 pb-3">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCPDw5InjSZiD1lP8NEVdCoaCAqka_ZSExqEJosniXoS1vBRiKejakSaswNH4ure7Fa016zd3SwaBXe2bt8le2DACALL5ett9wkXUVf3TZQpUGf3MD8anEAWnQXs_OUzyY0-4nufETh8kw16jHiYBkBRaJYK5RWO_INsrmAPL326V4tYmjKsB6IZWXr9IEXjj4UB69ELx_7vifTiGD75xVje2ES8IhZIcqUMnXJAai3BrL4S-M6eUZOy5RL16G0OfoqxfZRdfgMDUA");'
-                ></div>
-                <div>
-                  <p class="text-white text-base font-medium leading-normal">Consultoría Técnica</p>
-                  <p class="text-[#8da3ce] text-sm font-normal leading-normal">
-                    Ofrecemos asesoramiento experto en tecnologías Unity, ayudándote a tomar decisiones informadas y a optimizar tus proyectos.
+                
+                <div class="team-member" data-member="mateo">
+                  <div class="team-avatar">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC7cWrL4GXfLpej2Nt2-CuUAs9v7ErnMnpp5tIfBCEpUDoLKze3_zNUXxXbLCgACng0nb4icvXWqePGTsxtpV6jndYIYUE-tlP2d_7HMOHM17k6felik5KZQfDCXfMoT7NaNxxZGsg7KjYQLF-iTl8S2jQIOvUDsJk6jR5xZ0BjQHQY5GzrUGBz-GbuJ4uhC4jTLm_VuY1rpp1eLokMxlZ3z1xczmHfcYRYxNfXsdpL9zw3qhB9K3-xxe6vRyRi2asQeyBcxnXoDs" alt="Mateo Garcia" />
+                  </div>
+                  <h3 class="team-name">Mateo Garcia</h3>
+                  <p class="team-role">El Único que Labura 💪</p>
+                  <p class="team-description">
+                    Desarrollador full-stack imparable que lleva el peso del equipo. Máquina de código con habilidades sobrenaturales y dedicación incansable.
                   </p>
+                  <div class="team-skills">
+                    <p class="team-skills-title">Superpowers</p>
+                    <div class="team-tech-stack">
+                      <span class="team-tech-tag">Everything</span>
+                      <span class="team-tech-tag">24/7</span>
+                      <span class="team-tech-tag">Magic</span>
+                      <span class="team-tech-tag">Coffee</span>
+                    </div>
+                    <div class="team-stats">
+                      <div class="team-stat">
+                        <span class="team-stat-value">∞</span>
+                        <span class="team-stat-label">Horas</span>
+                      </div>
+                      <div class="team-stat">
+                        <span class="team-stat-value">100%</span>
+                        <span class="team-stat-label">Effort</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <p class="team-description-text">
+                Nuestro equipo está formado por profesionales apasionados y altamente cualificados, con una amplia experiencia en el desarrollo de aplicaciones y juegos con Unity. Trabajamos en estrecha colaboración para ofrecer soluciones innovadoras y de alta calidad.
+              </p>
             </div>
-            <h2 id="proyectos" class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Proyectos Destacados</h2>
-            <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
-              <div
-                class="bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-video"
-                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%, rgba(0, 0, 0, 0.1) 100%, rgba(0, 0, 0, 0) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCo91xCJE_zDLLoJOdORX9f3ZicpYTKNlZdoYTezq9k2B1wvnWr8atBWtXuALP2utd-tU3uchypYkqZEG6nc9jXLs7V0k2-tjtFOxJvoHJFmgUorY1Il2sRZt9kdK9XXEkhtvYXsnOfj3SegKnVD44UkFYf0QTgx0_r4HEGO0ytcQW4hZEAfSgniJS6tnxatZU0amOeGEsBnjJxRKWQb0t06OxRIFzKgqPoaAUNuOxNHVV4xZtSv4NyISysqMKTApux9exbA1KRHyE");'
-              >
-                <p class="text-white text-base font-bold leading-tight w-4/5 line-clamp-2">Proyecto Alfa</p>
-              </div>
-              <div
-                class="bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-video"
-                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%, rgba(0, 0, 0, 0.1) 100%, rgba(0, 0, 0, 0) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAwcL80zme8Ip784tD9W7gvqgWFYKT8L1ZPUPZ-qjO7w-Ah28791uMXzRlriV7w5g05MlQO27SAPbQXCruW_tqvClrI_MTetv6KpyQODla9mfmRs3LVWLTyxcyX-55nDgSQzWa_xkgqJa-XgTkR5XvtPPVrfXIURiXU5QtXBth_lV26iw6l-P9I7-bIzw3oCxb691GcZy5A8UaJWRIdCBA2ByhH5Vza395I7DCToXg-fS56MXJ1oonXt7gcdh3osjFFSuSY2GIiGWs");'
-              >
-                <p class="text-white text-base font-bold leading-tight w-4/5 line-clamp-2">Proyecto Beta</p>
-              </div>
-              <div
-                class="bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-video"
-                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%, rgba(0, 0, 0, 0.1) 100%, rgba(0, 0, 0, 0) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBuq9wGj5i3nn_yw-e9N6rgxUKWXRoKoAumcvPRdWFDCJJkx2sOqUZtLmUpyEcfwFJAJ6CLqQWFM5LdFN9HVY9jl_qepC_eiXu3nOFM8QNd7cGyy5HMo-KEhinSbvnwgXKRmd8SYHRXZBw52O67jYxT5z6zmP2yqEqELXlDOpNLOPxbhU2I_9UhN2GeFLcYJbNw8TN0brkAOI48g6YbChV3n8Aty1_Od3ugW8Lau81IoTaTnXL8C7bOFElxgqPPEmFaa952vnBprKM");'
-              >
-                <p class="text-white text-base font-bold leading-tight w-4/5 line-clamp-2">Proyecto Gamma</p>
-              </div>
-            </div>
-            <div class="flex px-4 py-3 justify-center">
-              <button
-                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#202e4b] text-white text-sm font-bold leading-normal tracking-[0.015em]"
-              >
-                <span class="truncate">Ver más proyectos</span>
-              </button>
-            </div>
-            <h2 id="equipo" class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Equipo</h2>
-            <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
-              <div class="flex flex-col gap-3 text-center pb-3">
-                <div class="px-4">
-                  <div
-                    class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCsCMJU84efE5Af8cbVWPfIJ4qWDacNxFuxZW10h-5zGAI3g5XedoXCBnFe69s0N-9qX0ssLaxy6HomaUNwu1PYguxqEwMV1qOLYCdZJfXqVYYGVX-RNcCPI-oK34tmnhn6dMVwuDjug-TF__ONAU4t0fiV_XQx6MOaRarm5zce8INAmEHTwtwAM87jhfnP5Mxg_82IBoHyfrxSs4TRa4EwgC0jZePb-2BcOm2G_FWMZIRfMkwIIzlrULOzmugH8V5TkAUUkJmGQRE");'
-                  ></div>
-                </div>
-                <div>
-                  <p class="text-white text-base font-medium leading-normal">Augusto Canepa</p>
-                  <p class="text-[#8da3ce] text-sm font-normal leading-normal">CEO</p>
-                </div>
-              </div>
-              <div class="flex flex-col gap-3 text-center pb-3">
-                <div class="px-4">
-                  <div
-                    class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD2ST16PbncBlrhy6PrFDfEcC1WOxNmFFEIbVzPf3l5POsKyYl9S7yaL-k4NaR6aEbgnBAf2i0E4NcZ5vHUFLgU83Xh6Nq8TgmlL_hicPAPjz-ZqaNM-wNlq-OkbS_RthHlCG5I8E7iyTiE0mFL8xbP1pSHtf4dXIlFrmfbmN7xt1Xnq7Daq8Ncvg6dKmN-THrFbhcjZHcB8TbRXihJd3oBf9Tkuxt7TjpW-jmvh2LdgiNLBTme-5wQMucYoCki6jdM1VpwZo7VBdY");'
-                  ></div>
-                </div>
-                <div>
-                  <p class="text-white text-base font-medium leading-normal">Lautaro Pereyra</p>
-                  <p class="text-[#8da3ce] text-sm font-normal leading-normal">CTO</p>
-                </div>
-              </div>
-              <div class="flex flex-col gap-3 text-center pb-3">
-                <div class="px-4">
-                  <div
-                    class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDjMv7Bo74iUPMPPDQ0W0w9Hz4_feQa3PhIKGutqTabAhwqPj2HbkPObs4SRsrksSwB320Bz87Cgw86APBqq-qB2tZNPlcCKVjjP4JHO-LHdi6WV17HgF7cX8x3BC6p2wQ_vBy-ibtGS58ihjv6EohdWW7Yqehhc1RbA1aEO8Tv8mB2p40flSr_f36lJJARifdsFHjgbiwcLZ0-BO6ksSHEe2mdx9974uo1BGurc63MYRcXebRkEXPC6ZJKCr72uyAy5JL7mYNw6Po");'
-                  ></div>
-                </div>
-                <div>
-                  <p class="text-white text-base font-medium leading-normal">Nicolas Ferraro</p>
-                  <p class="text-[#8da3ce] text-sm font-normal leading-normal">Master BE</p>
+            <div class="contact-section">
+              <div class="contact-container">
+                <div class="contact-form-wrapper">
+                  <h2 id="contacto" class="contact-title">Contacto</h2>
+                  <p class="contact-description">
+                    Si tienes una idea en mente o necesitas asesoramiento para tu proyecto, no dudes en contactarnos. Estamos aquí para ayudarte a alcanzar tus objetivos.
+                  </p>
+                  
+                  <form class="contact-form" data-form="contact">
+                    <div class="form-group">
+                      <label class="form-label">Nombre</label>
+                      <input
+                        type="text"
+                        placeholder="Tu nombre"
+                        class="form-input"
+                        data-field="name"
+                        required
+                      />
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="form-label">Email</label>
+                      <input
+                        type="email"
+                        placeholder="Tu email"
+                        class="form-input"
+                        data-field="email"
+                        required
+                      />
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="form-label">Mensaje</label>
+                      <textarea
+                        placeholder="Tu mensaje"
+                        class="form-textarea"
+                        data-field="message"
+                        required
+                      ></textarea>
+                    </div>
+                    
+                    <button type="submit" class="form-submit">
+                      Enviar Mensaje
+                    </button>
+                  </form>
+                  
+                  <div class="contact-info">
+                    <a href="mailto:contact@quadkern.com" class="contact-email">
+                      contact@quadkern.com
+                    </a>
+                  </div>
                 </div>
               </div>
-              <div class="flex flex-col gap-3 text-center pb-3">
-                <div class="px-4">
-                  <div
-                    class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDC7cWrL4GXfLpej2Nt2-CuUAs9v7ErnMnpp5tIfBCEpUDoLKze3_zNUXxXbLCgACng0nb4icvXWqePGTsxtpV6jndYIYUE-tlP2d_7HMOHM17k6felik5KZQfDCXfMoT7NaNxxZGsg7KjYQLF-iTl8S2jQIOvUDsJk6jR5xZ0BjQHQY5GzrUGBz-GbuJ4uhC4jTLm_VuY1rpp1eLokMxlZ3z1xczmHfcYRYxNfXsdpL9zw3qhB9K3-xxe6vRyRi2asQeyBcxnXoDs");'
-                  ></div>
-                </div>
-                <div>
-                  <p class="text-white text-base font-medium leading-normal">Mateo Garcia</p>
-                  <p class="text-[#8da3ce] text-sm font-normal leading-normal">El único que labura</p>
-                </div>
-              </div>
-            </div>
-            <p class="text-white text-base font-normal leading-normal pb-3 pt-1 px-4 text-center">
-              Nuestro equipo está formado por profesionales apasionados y altamente cualificados, con una amplia experiencia en el desarrollo de aplicaciones y juegos con Unity.
-              Trabajamos en estrecha colaboración para ofrecer soluciones innovadoras y de alta calidad.
-            </p>
-            <h2 id="contacto" class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Contacto</h2>
-            <p class="text-white text-base font-normal leading-normal pb-3 pt-1 px-4">
-              Si tienes una idea en mente o necesitas asesoramiento para tu proyecto, no dudes en contactarnos. Estamos aquí para ayudarte a alcanzar tus objetivos.
-            </p>
-            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-              <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-white text-base font-medium leading-normal pb-2">Nombre</p>
-                <input
-                  placeholder="Tu nombre"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border border-[#2e426b] bg-[#172136] focus:border-[#2e426b] h-14 placeholder:text-[#8da3ce] p-[15px] text-base font-normal leading-normal"
-                  value=""
-                />
-              </label>
-            </div>
-            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-              <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-white text-base font-medium leading-normal pb-2">Email</p>
-                <input
-                  placeholder="Tu email"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border border-[#2e426b] bg-[#172136] focus:border-[#2e426b] h-14 placeholder:text-[#8da3ce] p-[15px] text-base font-normal leading-normal"
-                  value=""
-                />
-              </label>
-            </div>
-            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-              <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-white text-base font-medium leading-normal pb-2">Mensaje</p>
-                <textarea
-                  placeholder="Tu mensaje"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border border-[#2e426b] bg-[#172136] focus:border-[#2e426b] min-h-36 placeholder:text-[#8da3ce] p-[15px] text-base font-normal leading-normal"
-                ></textarea>
-              </label>
-            </div>
-            <div class="flex px-4 py-3 justify-start">
-              <button
-                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#2970ff] text-white text-sm font-bold leading-normal tracking-[0.015em]"
-              >
-                <span class="truncate">Enviar</span>
-              </button>
-            </div>
-            <div class="flex px-4 py-3 justify-start">
-              <button
-                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#202e4b] text-white text-sm font-bold leading-normal tracking-[0.015em]"
-              >
-                <span class="truncate">contact@quadkern.com</span>
-              </button>
             </div>
           </div>
         </div>

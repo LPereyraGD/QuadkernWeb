@@ -10,6 +10,10 @@ class SimpleQuadKernEffects {
         this.mouseY = 0;
         this.time = 0;
         
+        // Control de efectos para evitar spam
+        this.lastEffectTime = 0;
+        this.effectCooldown = 500; // 500ms entre efectos (más restrictivo)
+        
         this.init();
     }
     
@@ -60,13 +64,79 @@ class SimpleQuadKernEffects {
             });
         }
         
-        // Efectos en navegación
-        const navLinks = document.querySelectorAll('header a');
+        // Efectos en navegación + funcionalidad smooth scroll
+        const navLinks = document.querySelectorAll('header a[href^="#"]');
         navLinks.forEach(link => {
             link.addEventListener('mouseenter', () => {
                 this.createNavEffect();
             });
+            
+            // Agregar funcionalidad de smooth scroll
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    const headerHeight = 80; // Altura del header fijo
+                    const targetPosition = targetElement.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    console.log(`🎯 Navegando a: ${targetId}`);
+                }
+            });
         });
+        
+        // Efectos especiales en tarjetas de servicios (con delay para que se carguen)
+        setTimeout(() => {
+            const serviceCards = document.querySelectorAll('.service-card');
+            serviceCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const service = card.getAttribute('data-service');
+                    this.createServiceEffect(service);
+                });
+            });
+            
+            // Efectos especiales en tarjetas de proyectos
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const project = card.getAttribute('data-type');
+                    this.createProjectEffect(project);
+                });
+            });
+            
+            // Efectos especiales en miembros del equipo
+            const teamMembers = document.querySelectorAll('.team-member');
+            teamMembers.forEach(member => {
+                member.addEventListener('mouseenter', () => {
+                    const memberName = member.getAttribute('data-member');
+                    this.createTeamEffect(memberName);
+                });
+            });
+            
+            // Efectos especiales en formulario de contacto
+            const contactForm = document.querySelector('.contact-form');
+            if (contactForm) {
+                const formInputs = contactForm.querySelectorAll('.form-input, .form-textarea');
+                formInputs.forEach(input => {
+                    input.addEventListener('focus', () => {
+                        this.createContactEffect();
+                    });
+                });
+                
+                const submitBtn = contactForm.querySelector('.form-submit');
+                if (submitBtn) {
+                    submitBtn.addEventListener('mouseenter', () => {
+                        this.createContactEffect();
+                    });
+                }
+            }
+        }, 1000);
     }
     
     createInitialParticles() {
@@ -124,6 +194,140 @@ class SimpleQuadKernEffects {
                 maxLife: 80
             });
         }
+    }
+    
+    createServiceEffect(serviceType) {
+        // Control de cooldown para evitar spam
+        const now = Date.now();
+        if (now - this.lastEffectTime < this.effectCooldown) {
+            return;
+        }
+        this.lastEffectTime = now;
+        
+        const colors = {
+            'mobile': '#3498db',
+            'games': '#6c5ce7', 
+            'backend': '#2ecc71',
+            'consulting': '#f39c12'
+        };
+        
+        const color = colors[serviceType] || '#3498db';
+        
+        // Reducido a 4 partículas (ultra sutil)
+        for (let i = 0; i < 4; i++) {
+            this.particles.push({
+                x: this.mouseX + (Math.random() - 0.5) * 40,
+                y: this.mouseY + (Math.random() - 0.5) * 40,
+                vx: (Math.random() - 0.5) * 1.5,
+                vy: (Math.random() - 0.5) * 1.5,
+                size: Math.random() * 2 + 1,
+                color: color,
+                alpha: 0.3,
+                life: 0,
+                maxLife: 60
+            });
+        }
+        
+        console.log(`✨ ${serviceType} service effect created!`);
+    }
+    
+    createProjectEffect(projectType) {
+        // Control de cooldown para evitar spam
+        const now = Date.now();
+        if (now - this.lastEffectTime < this.effectCooldown) {
+            return;
+        }
+        this.lastEffectTime = now;
+        
+        const colors = {
+            'game': '#6c5ce7',     // Violeta para juegos
+            'app': '#2ecc71',      // Verde para apps
+            'web': '#e74c3c'       // Rojo para web
+        };
+        
+        const color = colors[projectType] || '#3498db';
+        
+        // Reducido a 5 partículas (ultra sutil)
+        for (let i = 0; i < 5; i++) {
+            this.particles.push({
+                x: this.mouseX + (Math.random() - 0.5) * 50,
+                y: this.mouseY + (Math.random() - 0.5) * 50,
+                vx: (Math.random() - 0.5) * 1.8,
+                vy: (Math.random() - 0.5) * 1.8,
+                size: Math.random() * 2 + 1,
+                color: color,
+                alpha: 0.4,
+                life: 0,
+                maxLife: 70
+            });
+        }
+        
+        console.log(`🚀 ${projectType} project effect created!`);
+    }
+    
+    createTeamEffect(memberName) {
+        // Control de cooldown para evitar spam
+        const now = Date.now();
+        if (now - this.lastEffectTime < this.effectCooldown) {
+            return;
+        }
+        this.lastEffectTime = now;
+        
+        const colors = {
+            'augusto': '#3498db',    // Azul CEO
+            'lautaro': '#6c5ce7',    // Violeta CTO
+            'nicolas': '#2ecc71',    // Verde Backend Master
+            'mateo': '#f39c12'       // Naranja "El único que labura"
+        };
+        
+        const color = colors[memberName] || '#74b9ff';
+        
+        // Reducido a 4 partículas (ultra sutil)
+        for (let i = 0; i < 4; i++) {
+            this.particles.push({
+                x: this.mouseX + (Math.random() - 0.5) * 50,
+                y: this.mouseY + (Math.random() - 0.5) * 50,
+                vx: (Math.random() - 0.5) * 1.5,
+                vy: (Math.random() - 0.5) * 1.5,
+                size: Math.random() * 2 + 1,
+                color: color,
+                alpha: 0.3,
+                life: 0,
+                maxLife: 60
+            });
+        }
+        
+        console.log(`👨‍💻 ${memberName} team effect created!`);
+    }
+    
+    createContactEffect() {
+        // Control de cooldown para evitar spam
+        const now = Date.now();
+        if (now - this.lastEffectTime < this.effectCooldown) {
+            return;
+        }
+        this.lastEffectTime = now;
+        
+        // Efecto especial para el formulario de contacto
+        const colors = ['#3498db', '#2ecc71', '#f39c12'];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        
+        // Reducido a 3 partículas (ultra sutil)
+        for (let i = 0; i < 3; i++) {
+            this.particles.push({
+                x: this.mouseX + (Math.random() - 0.5) * 30,
+                y: this.mouseY + (Math.random() - 0.5) * 30,
+                vx: (Math.random() - 0.5) * 1,
+                vy: (Math.random() - 0.5) * 1,
+                size: Math.random() * 1.5 + 0.5,
+                color: color,
+                alpha: 0.3,
+                life: 0,
+                maxLife: 50
+            });
+        }
+        
+        console.log(`📧 Contact form effect created!`);
     }
     
     updateParticles() {
