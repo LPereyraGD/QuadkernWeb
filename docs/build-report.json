@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-09-19T13:24:18.436Z",
+  "timestamp": "2025-09-19T13:45:15.069Z",
   "buildVersion": "2.0.0",
   "files": {
     "html": [
@@ -39,16 +39,16 @@
       "kb": 5.24
     },
     "build-report.json": {
-      "bytes": 1905,
-      "kb": 1.86
+      "bytes": 1632,
+      "kb": 1.59
     },
     "effects.js": {
       "bytes": 13882,
       "kb": 13.56
     },
     "index.html": {
-      "bytes": 19017,
-      "kb": 18.57
+      "bytes": 29455,
+      "kb": 28.76
     },
     "javascript.svg": {
       "bytes": 995,
@@ -67,8 +67,8 @@
       "kb": 9.91
     },
     "styles.css": {
-      "bytes": 21007,
-      "kb": 20.51
+      "bytes": 32488,
+      "kb": 31.73
     },
     "technologies.svg": {
       "bytes": 13522,

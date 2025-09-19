@@ -119,6 +119,7 @@ class QuadKernBuilder {
       'base.css',
       'components.css',
       'layout.css',
+      'sections.css',
       'responsive.css'
     ];
 
@@ -160,11 +161,8 @@ class QuadKernBuilder {
       if (fs.existsSync(inputPath)) {
         let content = fs.readFileSync(inputPath, 'utf8');
         
-        // Optimizaciones básicas para docs/
+        // NO minimizar para docs/ - GitHub Pages necesita HTML legible
         const docsContent = content
-          .replace(/\s+/g, ' ') // Minimizar espacios
-          .replace(/<!--[\s\S]*?-->/g, '') // Remover comentarios
-          .replace(/>\s+</g, '><') // Remover espacios entre tags
           .replace(/<link rel="stylesheet" href="\.\/effects\.css">/g, '<link rel="stylesheet" href="./styles.css">')
           .replace(/<script src="\.\/simple-effects\.js"><\/script>/g, '<script type="module" src="./main.js"></script>')
           .replace(/<script src="\.\/navigation\.js"><\/script>/g, '');
