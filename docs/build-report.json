@@ -1,0 +1,107 @@
+{
+  "timestamp": "2025-09-19T00:52:02.476Z",
+  "buildVersion": "2.0.0",
+  "files": {
+    "html": [
+      "index.html"
+    ],
+    "css": [
+      "effects.css",
+      "style.css",
+      "styles.css"
+    ],
+    "js": [
+      "effects.js",
+      "main.js",
+      "navigation.js",
+      "performance.js",
+      "simple-effects.js"
+    ],
+    "assets": [
+      "CNAME",
+      "QuadkernLogo.png",
+      "background.svg",
+      "build-report.json",
+      "javascript.svg",
+      "technologies.svg",
+      "webstorm-icon-logo.svg",
+      "webstorm-logo.svg"
+    ]
+  },
+  "sizes": {
+    "CNAME": {
+      "bytes": 17,
+      "kb": 0.02
+    },
+    "QuadkernLogo.png": {
+      "bytes": 199895,
+      "kb": 195.21
+    },
+    "background.svg": {
+      "bytes": 5361,
+      "kb": 5.24
+    },
+    "build-report.json": {
+      "bytes": 1906,
+      "kb": 1.86
+    },
+    "effects.css": {
+      "bytes": 43271,
+      "kb": 42.26
+    },
+    "effects.js": {
+      "bytes": 13882,
+      "kb": 13.56
+    },
+    "index.html": {
+      "bytes": 19017,
+      "kb": 18.57
+    },
+    "javascript.svg": {
+      "bytes": 995,
+      "kb": 0.97
+    },
+    "main.js": {
+      "bytes": 11015,
+      "kb": 10.76
+    },
+    "navigation.js": {
+      "bytes": 12901,
+      "kb": 12.6
+    },
+    "performance.js": {
+      "bytes": 10150,
+      "kb": 9.91
+    },
+    "simple-effects.js": {
+      "bytes": 19392,
+      "kb": 18.94
+    },
+    "style.css": {
+      "bytes": 6809,
+      "kb": 6.65
+    },
+    "styles.css": {
+      "bytes": 20901,
+      "kb": 20.41
+    },
+    "technologies.svg": {
+      "bytes": 13522,
+      "kb": 13.21
+    },
+    "webstorm-icon-logo.svg": {
+      "bytes": 3975,
+      "kb": 3.88
+    },
+    "webstorm-logo.svg": {
+      "bytes": 16779,
+      "kb": 16.39
+    }
+  },
+  "optimizations": {
+    "cssModularization": true,
+    "typescriptCompilation": true,
+    "htmlMinification": true,
+    "assetOptimization": true
+  }
+}

@@ -1,33 +1,371 @@
-//TIP With Search Everywhere, you can find any action, file, or symbol in your project. Press <shortcut actionId="Shift"/> <shortcut actionId="Shift"/>, type in <b>terminal</b>, and press <shortcut actionId="EditorEnter"/>. Then run <shortcut raw="npm run dev"/> in the terminal and click the link in its output to open the app in the browser.
-export function setupCounter(element: HTMLElement) {
-  //TIP Try <shortcut actionId="GotoDeclaration"/> on <shortcut raw="counter"/> to see its usages. You can also use this shortcut to jump to a declaration – try it on <shortcut raw="counter"/> on line 13.
-  let counter = 0;
+/**
+ * QuadKern Main Application
+ * Sistema principal que orquesta todos los módulos
+ */
 
-  const adjustCounterValue = (value: number)  => {
-    if (value >= 100) return value - 100;
-    if (value <= -100) return value + 100;
-    return value;
-  };
+import { QuadKernEffects } from './effects';
+import { QuadKernNavigation } from './navigation';
+import { QuadKernPerformance } from './performance';
 
-  const setCounter = (value: number) => {
-    counter = adjustCounterValue(value);
-    //TIP WebStorm has lots of inspections to help you catch issues in your project. It also has quick fixes to help you resolve them. Press <shortcut actionId="ShowIntentionActions"/> on <shortcut raw="text"/> and choose <b>Inline variable</b> to clean up the redundant code.
-    const text = `${counter}`;
-    element.innerHTML = text;
-  };
-
-  document.getElementById('increaseByOne')?.addEventListener('click', () => setCounter(counter + 1));
-  document.getElementById('decreaseByOne')?.addEventListener('click', () => setCounter(counter - 1));
-  document.getElementById('increaseByTwo')?.addEventListener('click', () => setCounter(counter + 2));
-
-  //TIP In the app running in the browser, you’ll find that clicking <b>-2</b> doesn't work. To fix that, rewrite it using the code from lines 19 - 21 as examples of the logic.
-  document.getElementById('decreaseByTwo')
-
-  //TIP Let’s see how to review and commit your changes. Press <shortcut actionId="GotoAction"/> and look for <b>commit</b>. Try checking the diff for a file – double-click main.ts to do that.
-  setCounter(0);
+interface QuadKernConfig {
+  enableEffects: boolean;
+  enableNavigation: boolean;
+  enablePerformance: boolean;
+  debugMode: boolean;
+  autoOptimize: boolean;
 }
 
-//TIP To find text strings in your project, you can use the <shortcut actionId="FindInPath"/> shortcut. Press it and type in <b>counter</b> – you’ll get all matches in one place.
-setupCounter(document.getElementById('counter-value') as HTMLElement);
+class QuadKernApp {
+  private config: QuadKernConfig;
+  private effects: QuadKernEffects | null = null;
+  private navigation: QuadKernNavigation | null = null;
+  private performance: QuadKernPerformance | null = null;
+  private isInitialized = false;
 
-//TIP There's much more in WebStorm to help you be more productive. Press <shortcut actionId="Shift"/> <shortcut actionId="Shift"/> and search for <b>Learn WebStorm</b> to open our learning hub with more things for you to try.
+  constructor(config: Partial<QuadKernConfig> = {}) {
+    this.config = {
+      enableEffects: true,
+      enableNavigation: true,
+      enablePerformance: true,
+      debugMode: false,
+      autoOptimize: true,
+      ...config
+    };
+
+    this.init();
+  }
+
+  private async init(): Promise<void> {
+    if (this.isInitialized) return;
+
+    try {
+      console.log('🚀 Initializing QuadKern Application...');
+
+      // Inicializar módulos según configuración
+      if (this.config.enablePerformance) {
+        this.performance = new QuadKernPerformance();
+        await this.performance.init();
+      }
+
+      if (this.config.enableNavigation) {
+        this.navigation = new QuadKernNavigation();
+      }
+
+      if (this.config.enableEffects) {
+        this.effects = new QuadKernEffects();
+      }
+
+      // Configurar optimizaciones automáticas
+      if (this.config.autoOptimize) {
+        this.setupAutoOptimizations();
+      }
+
+      // Configurar debugging
+      if (this.config.debugMode) {
+        this.setupDebugMode();
+      }
+
+      // Configurar eventos globales
+      this.setupGlobalEvents();
+
+      this.isInitialized = true;
+      console.log('✅ QuadKern Application initialized successfully!');
+
+      // Reportar métricas iniciales
+      this.reportInitialMetrics();
+
+    } catch (error) {
+      console.error('❌ Error initializing QuadKern Application:', error);
+    }
+  }
+
+  private setupAutoOptimizations(): void {
+    // Optimización automática basada en el dispositivo
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+    const isLowEnd = (navigator as any).deviceMemory < 4;
+
+    if (isMobile || isLowEnd) {
+      console.log('📱 Mobile/Low-end device detected, applying optimizations...');
+      
+      if (this.effects) {
+        this.effects.setIntensity(0.6);
+        this.effects.setSpeed(0.8);
+      }
+
+      if (this.performance) {
+        this.performance.enableLowPowerMode();
+      }
+    }
+
+    // Optimización basada en conexión
+    const connection = (navigator as any).connection;
+    if (connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g')) {
+      console.log('🐌 Slow connection detected, reducing effects...');
+      
+      if (this.effects) {
+        this.effects.setIntensity(0.3);
+        this.effects.setSpeed(0.5);
+      }
+    }
+
+    // Optimización basada en batería
+    if ('getBattery' in navigator) {
+      (navigator as any).getBattery().then((battery: any) => {
+        if (battery.level < 0.2) {
+          console.log('🔋 Low battery detected, enabling power saving mode...');
+          this.enablePowerSavingMode();
+        }
+      });
+    }
+  }
+
+  private setupDebugMode(): void {
+    // Exponer controles de debugging en la consola
+    (window as any).QuadKernDebug = {
+      effects: this.effects,
+      navigation: this.navigation,
+      performance: this.performance,
+      config: this.config,
+      
+      // Métodos de debugging
+      toggleEffects: () => this.effects?.toggleEffects(),
+      setEffectIntensity: (intensity: number) => this.effects?.setIntensity(intensity),
+      navigateTo: (section: string) => this.navigation?.navigateTo(section),
+      getMetrics: () => this.performance?.getMetrics(),
+      
+      // Controles de navegación
+      setScrollEasing: (easing: 'elastic' | 'cubic' | 'linear') => this.navigation?.setEasingType(easing),
+      setScrollVelocity: (velocity: number) => this.navigation?.setScrollVelocity(velocity),
+      setScrollDuration: (duration: number) => this.navigation?.setScrollDuration(duration),
+      stopScrolling: () => this.navigation?.stopScrolling(),
+      
+      // Utilidades
+      enableHighPerformance: () => this.performance?.enableHighPerformanceMode(),
+      enableLowPower: () => this.performance?.enableLowPowerMode(),
+      enablePowerSaving: () => this.enablePowerSavingMode(),
+      
+      // Helpers
+      help: () => {
+        console.log(`
+🎯 QuadKern Debug Controls:
+
+📱 Navigation:
+  navigateTo('servicios')     - Navegar a sección
+  setScrollEasing('elastic')  - Cambiar animación (elastic/cubic/linear)
+  setScrollVelocity(3.0)      - Cambiar velocidad (0.5-5.0)
+  setScrollDuration(400)      - Cambiar duración (200-1500ms)
+  stopScrolling()             - Detener animación en curso
+
+🎨 Effects:
+  toggleEffects()             - Activar/desactivar efectos
+  setEffectIntensity(0.8)     - Cambiar intensidad (0-2)
+
+⚡ Performance:
+  enableHighPerformance()     - Modo alto rendimiento
+  enableLowPower()            - Modo ahorro de energía
+  getMetrics()                - Ver métricas
+
+Ejemplos:
+  QuadKernDebug.setScrollEasing('elastic')
+  QuadKernDebug.setScrollVelocity(2.5)
+  QuadKernDebug.navigateTo('equipo')
+        `);
+      }
+    };
+
+    console.log('🐛 Debug mode enabled. Use window.QuadKernDebug.help() for controls.');
+  }
+
+  private setupGlobalEvents(): void {
+    // Manejar visibilidad de la página
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        this.pauseEffects();
+      } else {
+        this.resumeEffects();
+      }
+    });
+
+    // Manejar cambios de tamaño
+    let resizeTimeout: number;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = window.setTimeout(() => {
+        this.handleResize();
+      }, 250);
+    });
+
+    // Manejar errores globales
+    window.addEventListener('error', (event) => {
+      console.error('🚨 Global error:', event.error);
+      this.handleError(event.error);
+    });
+
+    // Manejar errores de promesas no capturadas
+    window.addEventListener('unhandledrejection', (event) => {
+      console.error('🚨 Unhandled promise rejection:', event.reason);
+      this.handleError(event.reason);
+    });
+  }
+
+  private pauseEffects(): void {
+    if (this.effects) {
+      this.effects.pause();
+    }
+    console.log('⏸️ Effects paused (tab hidden)');
+  }
+
+  private resumeEffects(): void {
+    if (this.effects) {
+      this.effects.resume();
+    }
+    console.log('▶️ Effects resumed (tab visible)');
+  }
+
+  private handleResize(): void {
+    // Recalcular layouts y optimizaciones
+    if (this.navigation) {
+      this.navigation.updateConfig({});
+    }
+
+    if (this.effects) {
+      this.effects.resize();
+    }
+
+    console.log('📐 Layout recalculated for new viewport size');
+  }
+
+  private handleError(error: Error): void {
+    // Log del error para debugging
+    if (this.config.debugMode) {
+      console.error('Error details:', {
+        message: error.message,
+        stack: error.stack,
+        timestamp: new Date().toISOString()
+      });
+    }
+
+    // Intentar recuperación automática
+    this.attemptRecovery();
+  }
+
+  private attemptRecovery(): void {
+    // Estrategias de recuperación
+    try {
+      // Reducir efectos si hay problemas de performance
+      if (this.effects) {
+        this.effects.setIntensity(0.5);
+      }
+
+      // Habilitar modo de bajo consumo
+      this.enablePowerSavingMode();
+
+      console.log('🔄 Recovery measures applied');
+    } catch (recoveryError) {
+      console.error('❌ Recovery failed:', recoveryError);
+    }
+  }
+
+  private enablePowerSavingMode(): void {
+    if (this.effects) {
+      this.effects.setIntensity(0.4);
+      this.effects.setSpeed(0.6);
+    }
+
+    if (this.performance) {
+      this.performance.enableLowPowerMode();
+    }
+
+    console.log('🔋 Power saving mode enabled');
+  }
+
+  private reportInitialMetrics(): void {
+    if (!this.config.debugMode) return;
+
+    const metrics = {
+      timestamp: new Date().toISOString(),
+      userAgent: navigator.userAgent,
+      viewport: {
+        width: window.innerWidth,
+        height: window.innerHeight,
+        devicePixelRatio: window.devicePixelRatio
+      },
+      device: {
+        cores: navigator.hardwareConcurrency,
+        memory: (navigator as any).deviceMemory,
+        platform: navigator.platform,
+        isMobile: /Mobi|Android/i.test(navigator.userAgent)
+      },
+      connection: (navigator as any).connection ? {
+        effectiveType: (navigator as any).connection.effectiveType,
+        downlink: (navigator as any).connection.downlink,
+        saveData: (navigator as any).connection.saveData
+      } : null,
+      modules: {
+        effects: !!this.effects,
+        navigation: !!this.navigation,
+        performance: !!this.performance
+      }
+    };
+
+    console.log('📊 QuadKern Initial Metrics:', metrics);
+  }
+
+  // Métodos públicos
+  public getEffects(): QuadKernEffects | null {
+    return this.effects;
+  }
+
+  public getNavigation(): QuadKernNavigation | null {
+    return this.navigation;
+  }
+
+  public getPerformance(): QuadKernPerformance | null {
+    return this.performance;
+  }
+
+  public updateConfig(newConfig: Partial<QuadKernConfig>): void {
+    this.config = { ...this.config, ...newConfig };
+    
+    if (newConfig.debugMode !== undefined) {
+      if (newConfig.debugMode) {
+        this.setupDebugMode();
+      } else {
+        delete (window as any).QuadKernDebug;
+      }
+    }
+  }
+
+  public destroy(): void {
+    if (this.effects) {
+      this.effects.destroy();
+    }
+
+    this.isInitialized = false;
+    console.log('🗑️ QuadKern Application destroyed');
+  }
+}
+
+// Inicializar aplicación cuando el DOM esté listo
+let quadkernApp: QuadKernApp | null = null;
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Detectar modo de desarrollo
+  const isDevelopment = window.location.hostname === 'localhost' || 
+                       window.location.hostname === '127.0.0.1';
+
+  quadkernApp = new QuadKernApp({
+    enableEffects: true,
+    enableNavigation: true,
+    enablePerformance: true,
+    debugMode: isDevelopment,
+    autoOptimize: true
+  });
+
+  // Exponer instancia global para debugging
+  (window as any).QuadKern = quadkernApp;
+});
+
+// Exportar para uso en otros módulos
+export { QuadKernApp };
+export default QuadKernApp;

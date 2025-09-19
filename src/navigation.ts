@@ -8,6 +8,8 @@ interface NavigationConfig {
     smoothScrollDuration: number;
     activeLinkClass: string;
     offsetThreshold: number;
+    scrollVelocity: number;
+    easingType: 'elastic' | 'cubic' | 'linear';
 }
 
 interface SectionInfo {
@@ -23,13 +25,16 @@ class QuadKernNavigation {
     private navLinks: NodeListOf<HTMLAnchorElement> | null = null;
     private isScrolling = false;
     private scrollTimeout: number | null = null;
+    private currentAnimationId: number | null = null;
 
     constructor(config: Partial<NavigationConfig> = {}) {
         this.config = {
             headerHeight: 80,
-            smoothScrollDuration: 800,
+            smoothScrollDuration: 400, // Más rápido para evitar lag
             activeLinkClass: 'active-nav-link',
             offsetThreshold: 100,
+            scrollVelocity: 3.0, // Velocidad más alta
+            easingType: 'cubic', // Cubic por defecto (más suave)
             ...config
         };
 
@@ -140,6 +145,12 @@ class QuadKernNavigation {
             return;
         }
 
+        // Cancelar animación anterior si existe
+        if (this.currentAnimationId) {
+            cancelAnimationFrame(this.currentAnimationId);
+            this.currentAnimationId = null;
+        }
+
         this.isScrolling = true;
         
         // Calcular posición objetivo considerando el header fijo
@@ -152,34 +163,76 @@ class QuadKernNavigation {
     }
 
     /**
-     * Animación de scroll personalizada
+     * Animación de scroll con velocidad fija y easing elástico
      */
     private animateScroll(targetPosition: number): void {
         const startPosition = window.scrollY;
         const distance = targetPosition - startPosition;
+        const direction = distance > 0 ? 1 : -1;
+        const distanceAbs = Math.abs(distance);
+        
+        // Calcular duración basada en velocidad fija
+        const duration = Math.max(300, Math.min(800, distanceAbs / this.config.scrollVelocity));
         const startTime = performance.now();
 
-        const easeInOutCubic = (t: number): number => {
-            return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+        // Función de easing elástica suave (sin jitter)
+        const elasticEaseOut = (t: number): number => {
+            if (t === 0) return 0;
+            if (t === 1) return 1;
+            
+            // Easing más suave para evitar jitter
+            const c1 = 1.70158;
+            const c2 = c1 * 1.525;
+            
+            return t < 0.5
+                ? (Math.pow(2 * t, 2) * ((c2 + 1) * 2 * t - c2)) / 2
+                : (Math.pow(2 * t - 2, 2) * ((c2 + 1) * (t * 2 - 2) + c2) + 2) / 2;
+        };
+
+        // Función de easing cúbica suave
+        const cubicEaseOut = (t: number): number => {
+            return 1 - Math.pow(1 - t, 3);
+        };
+
+        // Función de easing lineal
+        const linearEase = (t: number): number => {
+            return t;
         };
 
         const animate = (currentTime: number): void => {
             const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / this.config.smoothScrollDuration, 1);
+            const progress = Math.min(elapsed / duration, 1);
             
-            const easedProgress = easeInOutCubic(progress);
+            let easedProgress: number;
+            
+            // Aplicar el tipo de easing seleccionado
+            switch (this.config.easingType) {
+                case 'elastic':
+                    easedProgress = elasticEaseOut(progress);
+                    break;
+                case 'cubic':
+                    easedProgress = cubicEaseOut(progress);
+                    break;
+                case 'linear':
+                default:
+                    easedProgress = linearEase(progress);
+                    break;
+            }
+            
             const currentPosition = startPosition + (distance * easedProgress);
-            
-            window.scrollTo(0, currentPosition);
+            window.scrollTo(0, Math.round(currentPosition));
             
             if (progress < 1) {
-                requestAnimationFrame(animate);
+                this.currentAnimationId = requestAnimationFrame(animate);
             } else {
+                // Asegurar que llegamos exactamente a la posición objetivo
+                window.scrollTo(0, targetPosition);
                 this.isScrolling = false;
+                this.currentAnimationId = null;
             }
         };
 
-        requestAnimationFrame(animate);
+        this.currentAnimationId = requestAnimationFrame(animate);
     }
 
     /**
@@ -335,13 +388,67 @@ class QuadKernNavigation {
         this.config = { ...this.config, ...newConfig };
         this.updateSectionPositions();
     }
+
+    /**
+     * Cambiar el tipo de easing del scroll
+     */
+    public setEasingType(easingType: 'elastic' | 'cubic' | 'linear'): void {
+        this.config.easingType = easingType;
+        console.log(`🎯 Scroll easing changed to: ${easingType}`);
+    }
+
+    /**
+     * Cambiar la velocidad del scroll
+     */
+    public setScrollVelocity(velocity: number): void {
+        this.config.scrollVelocity = Math.max(0.5, Math.min(5, velocity));
+        console.log(`⚡ Scroll velocity set to: ${this.config.scrollVelocity}`);
+    }
+
+    /**
+     * Cambiar la duración máxima del scroll
+     */
+    public setScrollDuration(duration: number): void {
+        this.config.smoothScrollDuration = Math.max(200, Math.min(1500, duration));
+        console.log(`⏱️ Scroll duration set to: ${this.config.smoothScrollDuration}ms`);
+    }
+
+    /**
+     * Detener cualquier animación en curso
+     */
+    public stopScrolling(): void {
+        if (this.currentAnimationId) {
+            cancelAnimationFrame(this.currentAnimationId);
+            this.currentAnimationId = null;
+        }
+        this.isScrolling = false;
+        console.log('🛑 Scroll animation stopped');
+    }
+
+    /**
+     * Destruir la instancia de navegación
+     */
+    public destroy(): void {
+        this.stopScrolling();
+        
+        // Remover event listeners
+        if (this.navLinks) {
+            this.navLinks.forEach(link => {
+                link.removeEventListener('click', this.handleNavigationClick);
+            });
+        }
+        
+        console.log('🗑️ Navigation destroyed');
+    }
 }
 
-// Inicializar navegación cuando el script se carga
-const navigation = new QuadKernNavigation();
+// Exportar para uso en otros módulos
+export { QuadKernNavigation };
 
-// Exportar para uso global
-(window as any).QuadKernNavigation = QuadKernNavigation;
-(window as any).navigation = navigation;
-
-console.log('🚀 QuadKern Navigation System loaded');
+// Inicializar navegación cuando el script se carga (solo si no es importado)
+if (typeof window !== 'undefined') {
+  const navigation = new QuadKernNavigation();
+  (window as any).QuadKernNavigation = QuadKernNavigation;
+  (window as any).navigation = navigation;
+  console.log('🚀 QuadKern Navigation System loaded');
+}

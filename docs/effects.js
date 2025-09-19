@@ -257,6 +257,20 @@ class QuadKernEffects {
     toggleEffects() {
         this.config.enabled = !this.config.enabled;
     }
+    pause() {
+        if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+            this.animationId = 0;
+        }
+    }
+    resume() {
+        if (!this.animationId) {
+            this.startAnimation();
+        }
+    }
+    resize() {
+        this.resizeCanvas();
+    }
     destroy() {
         if (this.animationId) {
             cancelAnimationFrame(this.animationId);

@@ -17,9 +17,17 @@ class QuadKernPerformance {
             interactionTime: 0,
             memoryUsage: 0
         };
-        this.init();
+        this.initPrivate();
     }
-    init() {
+    async init() {
+        this.measureLoadTime();
+        this.setupLazyLoading();
+        this.setupImageOptimization();
+        this.setupResourcePreloading();
+        this.setupPerformanceMonitoring();
+        this.optimizeForGitHubPages();
+    }
+    initPrivate() {
         this.measureLoadTime();
         this.setupLazyLoading();
         this.setupImageOptimization();

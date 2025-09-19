@@ -333,6 +333,23 @@ class QuadKernEffects {
     this.config.enabled = !this.config.enabled;
   }
 
+  public pause(): void {
+    if (this.animationId) {
+      cancelAnimationFrame(this.animationId);
+      this.animationId = 0;
+    }
+  }
+
+  public resume(): void {
+    if (!this.animationId) {
+      this.startAnimation();
+    }
+  }
+
+  public resize(): void {
+    this.resizeCanvas();
+  }
+
   public destroy(): void {
     if (this.animationId) {
       cancelAnimationFrame(this.animationId);
