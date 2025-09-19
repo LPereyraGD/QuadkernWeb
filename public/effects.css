@@ -355,6 +355,7 @@ body {
   overflow: hidden;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
+  margin-top: -20px;
 }
 
 .services-section::before {
@@ -559,6 +560,13 @@ body {
     padding: 28px 20px;
   }
   
+  /* Proyectos en pantallas grandes: 2 columnas */
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 40px !important;
+    max-width: 1000px !important;
+  }
+  
   /* Equipo en pantallas grandes: 4 columnas */
   .team-grid {
     grid-template-columns: repeat(4, 1fr);
@@ -660,6 +668,8 @@ body {
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
     padding: 24px 16px;
+    max-width: 700px;
+    margin: 0 auto;
   }
   
   .team-member {
@@ -687,6 +697,28 @@ body {
 
 /* Responsive optimizado para móvil - Flujo continuo */
 @media (max-width: 599px) {
+  /* Header más grande en mobile */
+  header {
+    padding: 20px 16px !important;
+    height: auto !important;
+    min-height: 80px !important;
+  }
+  
+  .nav-links {
+    gap: 24px !important;
+  }
+  
+  .nav-links a {
+    font-size: 16px !important;
+    padding: 8px 12px !important;
+  }
+  
+  .contact-btn {
+    padding: 12px 20px !important;
+    font-size: 14px !important;
+    border-radius: 8px !important;
+  }
+  
   /* Todas las secciones con flujo continuo */
   .services-section,
   .projects-section,
@@ -794,12 +826,13 @@ body {
 }
 
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-  padding: 32px 24px;
-  max-width: 1400px;
-  margin: 0 auto;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  grid-template-rows: auto !important;
+  gap: 40px !important;
+  padding: 40px 24px !important;
+  max-width: 1000px !important;
+  margin: 0 auto !important;
   position: relative;
   z-index: 2;
 }
@@ -1201,12 +1234,12 @@ body {
 }
 
 .team-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-  padding: 40px 24px;
-  max-width: 1400px;
-  margin: 0 auto;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 40px !important;
+  padding: 40px 24px !important;
+  max-width: 1000px !important;
+  margin: 0 auto !important;
   position: relative;
   z-index: 2;
 }
@@ -1506,61 +1539,6 @@ body {
   }
 }
 
-  /* Equipo responsive */
-  .team-grid {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 16px;
-    padding: 16px 12px;
-  }
-  
-  .team-member {
-    padding: 16px 12px;
-    border-radius: 16px;
-    margin: 0;
-  }
-  
-  .team-avatar {
-    width: 70px;
-    height: 70px;
-    margin-bottom: 12px;
-  }
-  
-  .team-name {
-    font-size: 16px;
-    margin-bottom: 4px;
-  }
-  
-  .team-role {
-    font-size: 11px;
-    margin-bottom: 10px;
-  }
-  
-  .team-description {
-    font-size: 11px;
-    margin-bottom: 12px;
-  }
-  
-  .team-tech-tag {
-    padding: 2px 6px;
-    font-size: 8px;
-  }
-  
-  .team-stat-value {
-    font-size: 12px;
-  }
-  
-  .team-stat-label {
-    font-size: 8px;
-  }
-  
-  .team-member:hover {
-    transform: translateY(-4px) scale(1.01);
-  }
-  
-  /* Ocultar conexiones en móvil */
-  .team-connections {
-    display: none;
-  }
 
 /* Team description styling */
 .team-description-text {
