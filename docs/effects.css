@@ -4,6 +4,35 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Navegación mejorada */
+.nav-link {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3498db, #74b9ff);
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+  border-radius: 1px;
+}
+
+.nav-link:hover::after,
+.nav-link.active-nav-link::after {
+  width: 100%;
+}
+
+.nav-link.active-nav-link {
+  color: #74b9ff !important;
+  text-shadow: 0 0 8px rgba(116, 185, 255, 0.3);
+}
+
 /* Mejoras generales para flujo de secciones */
 body {
   margin: 0;
@@ -602,6 +631,29 @@ body {
   .service-description {
     font-size: 14px;
   }
+
+  /* Proyectos en tablets: 2x2 */
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px 16px;
+  }
+  
+  .project-card {
+    padding: 24px 18px;
+  }
+  
+  .project-image {
+    height: 200px;
+  }
+  
+  .project-title {
+    font-size: 22px;
+  }
+  
+  .project-description {
+    font-size: 14px;
+  }
   
   /* Equipo en tablets: 2x2 */
   .team-grid {
@@ -743,9 +795,9 @@ body {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 40px;
-  padding: 40px 24px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  padding: 32px 24px;
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
@@ -1053,54 +1105,56 @@ body {
   /* Proyectos responsive */
   .projects-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
     padding: 16px 12px;
   }
   
   .project-card {
     border-radius: 20px;
     margin: 0;
+    max-width: 100%;
   }
   
   .project-image {
-    height: 160px;
+    height: 180px;
     border-radius: 16px 16px 0 0;
   }
   
   .project-content {
-    padding: 16px 14px;
+    padding: 20px 18px;
   }
   
   .project-title {
-    font-size: 18px;
-    margin-bottom: 10px;
+    font-size: 20px;
+    margin-bottom: 12px;
   }
   
   .project-description {
-    font-size: 13px;
-    margin-bottom: 16px;
+    font-size: 14px;
+    margin-bottom: 18px;
+    line-height: 1.6;
   }
   
   .project-tech-stack {
-    margin-bottom: 16px;
-    gap: 4px;
+    margin-bottom: 18px;
+    gap: 6px;
   }
   
   .project-tech-tag {
-    padding: 3px 8px;
-    font-size: 10px;
+    padding: 4px 10px;
+    font-size: 11px;
   }
   
   .project-stats {
-    padding-top: 12px;
+    padding-top: 16px;
   }
   
   .project-stat-value {
-    font-size: 14px;
+    font-size: 16px;
   }
   
   .project-stat-label {
-    font-size: 9px;
+    font-size: 10px;
   }
   
   .project-card:hover {
@@ -1112,8 +1166,8 @@ body {
   }
   
   .projects-cta-btn {
-    padding: 12px 24px;
-    font-size: 13px;
+    padding: 14px 28px;
+    font-size: 14px;
   }
 
 /* Team Section Redesign - Holographic Tech Crew */

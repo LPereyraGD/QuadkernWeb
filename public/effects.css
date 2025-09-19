@@ -4,8 +4,60 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Header Overlay Effect */
-.header-overlay {
+/* Navegación mejorada */
+.nav-link {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3498db, #74b9ff);
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+  border-radius: 1px;
+}
+
+.nav-link:hover::after,
+.nav-link.active-nav-link::after {
+  width: 100%;
+}
+
+.nav-link.active-nav-link {
+  color: #74b9ff !important;
+  text-shadow: 0 0 8px rgba(116, 185, 255, 0.3);
+}
+
+/* Mejoras generales para flujo de secciones */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Contenedor principal con mejor flujo */
+.layout-content-container {
+  position: relative;
+}
+
+/* Transiciones suaves entre secciones */
+.services-section,
+.projects-section,
+.team-section,
+.contact-section {
+  position: relative;
+  z-index: 1;
+}
+
+.services-section::after,
+.projects-section::after,
+.team-section::after {
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
@@ -237,34 +289,39 @@ html {
 @media (max-width: 768px) {
   .hero-section {
     min-height: 100vh;
-    padding: 100px 0 10px 0;
+    padding: 100px 0 60px 0;
   }
   
   .hero-content {
     padding: 0 16px;
   }
   
+  .hero-logo-container {
+    padding: 40px 24px;
+    border-radius: 24px;
+    margin-bottom: 24px;
+  }
+  
   .hero-logo {
     max-width: 280px;
-    margin: 0 auto 32px auto;
+    margin: 0 auto 20px auto;
     display: block;
   }
   
   .hero-title {
-    font-size: 32px;
-    margin-bottom: 20px;
+    font-size: 28px;
+    margin-bottom: 16px;
     letter-spacing: -0.3px;
   }
   
   .hero-title::before {
-    width: 50px;
-    height: 2px;
-    bottom: -8px;
+    width: 40px;
+    height: 1.5px;
   }
   
   .hero-description {
-    font-size: 16px;
-    margin-bottom: 40px;
+    font-size: 15px;
+    margin-bottom: 32px;
     line-height: 1.5;
   }
   
@@ -277,8 +334,12 @@ html {
   .hero-btn-secondary {
     width: 100%;
     max-width: 280px;
-    padding: 16px 28px;
-    font-size: 15px;
+    padding: 14px 24px;
+    font-size: 14px;
+  }
+  
+  .hero-logo-container:hover {
+    transform: translateY(-4px) scale(1.01);
   }
 }
 
@@ -570,6 +631,29 @@ html {
   .service-description {
     font-size: 14px;
   }
+
+  /* Proyectos en tablets: 2x2 */
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px 16px;
+  }
+  
+  .project-card {
+    padding: 24px 18px;
+  }
+  
+  .project-image {
+    height: 200px;
+  }
+  
+  .project-title {
+    font-size: 22px;
+  }
+  
+  .project-description {
+    font-size: 14px;
+  }
   
   /* Equipo en tablets: 2x2 */
   .team-grid {
@@ -677,218 +761,6 @@ html {
     padding: 3px 8px;
     font-size: 10px;
   }
-
-  /* Proyectos responsive */
-  .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 16px 12px;
-  }
-  
-  .project-card {
-    border-radius: 20px;
-    margin: 0;
-  }
-  
-  .project-image {
-    height: 160px;
-    border-radius: 16px 16px 0 0;
-  }
-  
-  .project-content {
-    padding: 16px 14px;
-  }
-  
-  .project-title {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .project-description {
-    font-size: 13px;
-    margin-bottom: 16px;
-  }
-  
-  .project-tech-stack {
-    margin-bottom: 16px;
-    gap: 4px;
-  }
-  
-  .project-tech-tag {
-    padding: 3px 8px;
-    font-size: 10px;
-  }
-  
-  .project-stats {
-    padding-top: 12px;
-  }
-  
-  .project-stat-value {
-    font-size: 14px;
-  }
-  
-  .project-stat-label {
-    font-size: 9px;
-  }
-  
-  .project-card:hover {
-    transform: translateY(-6px) scale(1.01);
-  }
-  
-  .projects-cta {
-    margin-top: 32px;
-  }
-  
-  .projects-cta-btn {
-    padding: 12px 24px;
-    font-size: 13px;
-  }
-
-  /* Equipo responsive */
-  .team-grid {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 16px;
-    padding: 16px 12px;
-  }
-  
-  .team-member {
-    padding: 16px 12px;
-    border-radius: 16px;
-    margin: 0;
-  }
-  
-  .team-avatar {
-    width: 70px;
-    height: 70px;
-    margin-bottom: 12px;
-  }
-  
-  .team-name {
-    font-size: 16px;
-    margin-bottom: 4px;
-  }
-  
-  .team-role {
-    font-size: 11px;
-    margin-bottom: 10px;
-  }
-  
-  .team-description {
-    font-size: 11px;
-    margin-bottom: 12px;
-  }
-  
-  .team-tech-tag {
-    padding: 2px 6px;
-    font-size: 8px;
-  }
-  
-  .team-stat-value {
-    font-size: 12px;
-  }
-  
-  .team-stat-label {
-    font-size: 8px;
-  }
-  
-  .team-member:hover {
-    transform: translateY(-4px) scale(1.01);
-  }
-  
-  /* Ocultar conexiones en móvil */
-  .team-connections {
-    display: none;
-  }
-
-  /* Contacto responsive */
-  .contact-container {
-    padding: 16px 12px;
-  }
-  
-  .contact-form-wrapper {
-    padding: 20px 16px;
-    border-radius: 16px;
-    margin: 0;
-  }
-  
-  .contact-title {
-    font-size: 22px;
-    margin-bottom: 10px;
-  }
-  
-  .contact-description {
-    font-size: 13px;
-    margin-bottom: 24px;
-  }
-  
-  .form-group {
-    margin-bottom: 16px;
-  }
-  
-  .form-label {
-    font-size: 11px;
-    margin-bottom: 6px;
-  }
-  
-  .form-input, .form-textarea {
-    padding: 12px 14px;
-    font-size: 13px;
-    border-radius: 12px;
-  }
-  
-  .form-textarea {
-    min-height: 80px;
-  }
-  
-  .form-submit {
-    padding: 12px 20px;
-    font-size: 13px;
-    border-radius: 12px;
-  }
-  
-  .contact-info {
-    margin-top: 20px;
-  }
-  
-  .contact-email {
-    font-size: 13px;
-    padding: 8px 14px;
-    border-radius: 10px;
-  }
-  
-  /* Títulos de sección responsive */
-  .services-section h2,
-  .projects-section h2,
-  .team-section h2,
-  .contact-section h2 {
-    font-size: 24px;
-    padding: 0 16px;
-    margin-bottom: 24px;
-  }
-  
-  /* Descripción del equipo responsive */
-  .team-description-text {
-    max-width: 100%;
-    margin: 24px auto 0;
-    padding: 0 16px;
-    font-size: 14px;
-    line-height: 1.5;
-  }
-  
-  /* Optimización general para móvil */
-  body {
-    overflow-x: hidden;
-  }
-  
-  /* Hero section responsive */
-  .hero-section {
-    padding: 80px 0 30px 0;
-  }
-  
-  /* Footer responsive */
-  footer {
-    padding: 40px 16px;
-  }
 }
 
 /* Proyectos Section Redesign - 3D Tech Showcase */
@@ -903,6 +775,7 @@ html {
   overflow: hidden;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
+  margin-top: -20px;
 }
 
 .projects-section::before {
@@ -922,9 +795,9 @@ html {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 40px;
-  padding: 40px 24px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  padding: 32px 24px;
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
@@ -1229,6 +1102,74 @@ html {
   }
 }
 
+  /* Proyectos responsive */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px 12px;
+  }
+  
+  .project-card {
+    border-radius: 20px;
+    margin: 0;
+    max-width: 100%;
+  }
+  
+  .project-image {
+    height: 180px;
+    border-radius: 16px 16px 0 0;
+  }
+  
+  .project-content {
+    padding: 20px 18px;
+  }
+  
+  .project-title {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  
+  .project-description {
+    font-size: 14px;
+    margin-bottom: 18px;
+    line-height: 1.6;
+  }
+  
+  .project-tech-stack {
+    margin-bottom: 18px;
+    gap: 6px;
+  }
+  
+  .project-tech-tag {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+  
+  .project-stats {
+    padding-top: 16px;
+  }
+  
+  .project-stat-value {
+    font-size: 16px;
+  }
+  
+  .project-stat-label {
+    font-size: 10px;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-6px) scale(1.01);
+  }
+  
+  .projects-cta {
+    margin-top: 32px;
+  }
+  
+  .projects-cta-btn {
+    padding: 14px 28px;
+    font-size: 14px;
+  }
+
 /* Team Section Redesign - Holographic Tech Crew */
 .team-section {
   background: linear-gradient(135deg, 
@@ -1241,6 +1182,7 @@ html {
   overflow: hidden;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
+  margin-top: -20px;
 }
 
 .team-section::before {
@@ -1564,6 +1506,62 @@ html {
   }
 }
 
+  /* Equipo responsive */
+  .team-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    padding: 16px 12px;
+  }
+  
+  .team-member {
+    padding: 16px 12px;
+    border-radius: 16px;
+    margin: 0;
+  }
+  
+  .team-avatar {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 12px;
+  }
+  
+  .team-name {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  
+  .team-role {
+    font-size: 11px;
+    margin-bottom: 10px;
+  }
+  
+  .team-description {
+    font-size: 11px;
+    margin-bottom: 12px;
+  }
+  
+  .team-tech-tag {
+    padding: 2px 6px;
+    font-size: 8px;
+  }
+  
+  .team-stat-value {
+    font-size: 12px;
+  }
+  
+  .team-stat-label {
+    font-size: 8px;
+  }
+  
+  .team-member:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+  
+  /* Ocultar conexiones en móvil */
+  .team-connections {
+    display: none;
+  }
+
 /* Team description styling */
 .team-description-text {
   max-width: 800px;
@@ -1585,11 +1583,12 @@ html {
     rgba(45, 75, 125, 0.85) 50%, 
     rgba(30, 40, 60, 0.98) 100%);
   position: relative;
-  padding: 100px 0;
+  padding: 100px 0 120px 0;
   margin: 0;
   overflow: hidden;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
+  margin-top: -20px;
 }
 
 .contact-section::before {
@@ -1843,18 +1842,95 @@ html {
   }
 }
 
-/* Team description styling */
-.team-description-text {
-  max-width: 800px;
-  margin: 40px auto 0;
-  padding: 0 24px;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 16px;
-  line-height: 1.6;
-  font-weight: 400;
-  position: relative;
-  z-index: 10;
+  /* Contacto responsive */
+  .contact-container {
+    padding: 16px 12px;
+  }
+  
+  .contact-form-wrapper {
+    padding: 20px 16px;
+    border-radius: 16px;
+    margin: 0;
+  }
+  
+  .contact-title {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+  
+  .contact-description {
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+  
+  .form-group {
+    margin-bottom: 16px;
+  }
+  
+  .form-label {
+    font-size: 11px;
+    margin-bottom: 6px;
+  }
+  
+  .form-input, .form-textarea {
+    padding: 12px 14px;
+    font-size: 13px;
+    border-radius: 12px;
+  }
+  
+  .form-textarea {
+    min-height: 80px;
+  }
+  
+  .form-submit {
+    padding: 12px 20px;
+    font-size: 13px;
+    border-radius: 12px;
+  }
+  
+  .contact-info {
+    margin-top: 20px;
+  }
+  
+  .contact-email {
+    font-size: 13px;
+    padding: 8px 14px;
+    border-radius: 10px;
+  }
+  
+  /* Títulos de sección responsive */
+  .services-section h2,
+  .projects-section h2,
+  .team-section h2,
+  .contact-section h2 {
+    font-size: 24px;
+    padding: 0 16px;
+    margin-bottom: 24px;
+  }
+  
+  /* Descripción del equipo responsive */
+  .team-description-text {
+    max-width: 100%;
+    margin: 24px auto 0;
+    padding: 0 16px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  /* Optimización general para móvil */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Hero section responsive */
+  .hero-section {
+    padding: 80px 0 30px 0;
+  }
+  
+  /* Footer responsive */
+  footer {
+    padding: 40px 16px;
+  }
 }
 
 /* Efectos de fondo tecnológicos */
@@ -2079,17 +2155,5 @@ html {
     transform: translateY(-10vh) translateX(100px) rotate(360deg);
     opacity: 0;
     filter: blur(2px);
-  }
-}
-
-/* Animaciones específicas del Hero */
-@keyframes heroAmbient {
-  0%, 100% { 
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% { 
-    opacity: 0.9;
-    transform: scale(1.01);
   }
 }

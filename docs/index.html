@@ -15,6 +15,7 @@
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link rel="stylesheet" href="./effects.css">
+    <script src="./navigation.js"></script>
 </head>
 <body>
     <!-- Efectos avanzados de shader y movimiento -->
@@ -71,60 +72,98 @@
         </div>
         
         <!-- Servicios Section -->
-        <div class="px-40 flex flex-1 justify-center py-5">
-          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-            <h2 id="servicios" class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Servicios</h2>
-            <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
-              <div class="flex flex-col gap-3 pb-3">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDVKV7WxxvokkenZ7oEq1xMWUGujXM5o6XmymiPytPsTYynucy-fqM7m5u6eljJ2AR9joCwBIgiMwGjg1RUoRYExp9664uSU6wAdqTN_DUSFhrK0YXGXVo4JuIzIHo17HxR8EBaNEp26MPla2swi0ys8CgOCKqkM5TJYpYpiQ57yh08XkRYbi2d_F2hkmtDmHKHgr9mHye6w4pooQcpvBCqe28hov0iOEOoiZ_hZlWesp06hkH8eZRO-60M3B-8ncUwQnBR_Dlz3zY");'
-                ></div>
-                <div>
-                  <p class="text-white text-base font-medium leading-normal">Desarrollo de Apps Móviles</p>
-                  <p class="text-[#8da3ce] text-sm font-normal leading-normal">
-                    Creamos aplicaciones móviles nativas para iOS y Android, optimizadas para un rendimiento excepcional y una experiencia de usuario inigualable.
-                  </p>
+        <section class="services-section">
+          <h2 id="servicios" class="text-white text-[32px] font-black leading-tight tracking-[-0.015em] text-center pb-8 pt-5 relative z-10">Nuestros Servicios</h2>
+          <div class="services-grid">
+            <div class="service-card" data-type="mobile">
+              <div class="service-card-content">
+                <div class="service-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17 1H7c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm0 18H7V5h10v14zm-1-6h-8V7h8v6z"/>
+                  </svg>
                 </div>
-              </div>
-              <div class="flex flex-col gap-3 pb-3">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCN5xNcrh3CLQG_Vfhz6WZ0K7j3pef0fsKEsCBcl75FUYV6i0CwmOXnCsqTMdbcnZ_N79oED2-ncgOuu8xKnGkVNU-sW_J2H4nL-SG2tsBqNVZATRR6NQd6usl8O5D8oYWwH4mIBtip_Dmyz495wW7WXwQCgP_EeyMp3qEyEoSPLV7wtTK9_3zJVOc03LBD62LQX7-G3NQ54ZHFOzc4G9n6CWfkL0Xbm02K6H-9e_DtisnZDYeyrprVtyQX1rE8THMcwsILTyPH3as");'
-                ></div>
-                <div>
-                  <p class="text-white text-base font-medium leading-normal">Videojuegos con Unity</p>
-                  <p class="text-[#8da3ce] text-sm font-normal leading-normal">
-                    Desarrollamos videojuegos inmersivos y de alta calidad para diversas plataformas, aprovechando al máximo las capacidades de Unity.
-                  </p>
+                <h3 class="service-title">Desarrollo de Apps Móviles</h3>
+                <p class="service-description">
+                  Creamos aplicaciones móviles nativas para iOS y Android, optimizadas para un rendimiento excepcional y una experiencia de usuario inigualable.
+                </p>
+                <div class="service-tech-stack">
+                  <span class="tech-tag">React Native</span>
+                  <span class="tech-tag">Flutter</span>
+                  <span class="tech-tag">Swift</span>
+                  <span class="tech-tag">Kotlin</span>
                 </div>
-              </div>
-              <div class="flex flex-col gap-3 pb-3">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCjBEF5MIpbdBXds3NUJ51AGHoCAOVKQX-MqnihrTlCucNcHhwh_CKq4-cqWNJUSoCyPSpwRfo6P3e5BEFqSE3ytqjHx0mmqWOuvuPQ4FearV7Be3hYXKVjwG3iJpkI4mu6luWIuRhCpe-oLi7I98KbNxpTjCcUsRPkAnGMm3I6tsDzBR-aLHf4ZVTZBMr8OSz7BZnoXM8Z5iZKiUPAlVfsxSBgX0Wiokyax7Z7uhg4w7xrwIUJ3bAhnDv9Ym5nbNes1qfpkDykeAc");'
-                ></div>
-                <div>
-                  <p class="text-white text-base font-medium leading-normal">Integraciones y Backend</p>
-                  <p class="text-[#8da3ce] text-sm font-normal leading-normal">
-                    Implementamos integraciones complejas y soluciones de backend robustas para garantizar la escalabilidad y el funcionamiento óptimo de tus aplicaciones.
-                  </p>
-                </div>
-              </div>
-              <div class="flex flex-col gap-3 pb-3">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCPDw5InjSZiD1lP8NEVdCoaCAqka_ZSExqEJosniXoS1vBRiKejakSaswNH4ure7Fa016zd3SwaBXe2bt8le2DACALL5ett9wkXUVf3TZQpUGf3MD8anEAWnQXs_OUzyY0-4nufETh8kw16jHiYBkBRaJYK5RWO_INsrmAPL326V4tYmjKsB6IZWXr9IEXjj4UB69ELx_7vifTiGD75xVje2ES8IhZIcqUMnXJAai3BrL4S-M6eUZOy5RL16G0OfoqxfZRdfgMDUA");'
-                ></div>
-                <div>
-                  <p class="text-white text-base font-medium leading-normal">Consultoría Técnica</p>
-                  <p class="text-[#8da3ce] text-sm font-normal leading-normal">
-                    Ofrecemos asesoramiento experto en tecnologías Unity, ayudándote a tomar decisiones informadas y a optimizar tus proyectos.
-                  </p>
-                </div>
+                <a href="#contacto" class="service-cta">Más Info</a>
               </div>
             </div>
-            <div class="projects-section">
+
+            <div class="service-card" data-type="games">
+              <div class="service-card-content">
+                <div class="service-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 10H3V8h18v8z"/>
+                    <path d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 2c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1z"/>
+                  </svg>
+                </div>
+                <h3 class="service-title">Videojuegos con Unity</h3>
+                <p class="service-description">
+                  Desarrollamos videojuegos inmersivos y de alta calidad para diversas plataformas, aprovechando al máximo las capacidades de Unity.
+                </p>
+                <div class="service-tech-stack">
+                  <span class="tech-tag">Unity 3D</span>
+                  <span class="tech-tag">C#</span>
+                  <span class="tech-tag">Blender</span>
+                  <span class="tech-tag">VR/AR</span>
+                </div>
+                <a href="#contacto" class="service-cta">Más Info</a>
+              </div>
+            </div>
+
+            <div class="service-card" data-type="backend">
+              <div class="service-card-content">
+                <div class="service-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </div>
+                <h3 class="service-title">Integraciones y Backend</h3>
+                <p class="service-description">
+                  Implementamos integraciones complejas y soluciones de backend robustas para garantizar la escalabilidad y el funcionamiento óptimo de tus aplicaciones.
+                </p>
+                <div class="service-tech-stack">
+                  <span class="tech-tag">Node.js</span>
+                  <span class="tech-tag">Python</span>
+                  <span class="tech-tag">AWS</span>
+                  <span class="tech-tag">Docker</span>
+                </div>
+                <a href="#contacto" class="service-cta">Más Info</a>
+              </div>
+            </div>
+
+            <div class="service-card" data-type="consulting">
+              <div class="service-card-content">
+                <div class="service-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                </div>
+                <h3 class="service-title">Consultoría Técnica</h3>
+                <p class="service-description">
+                  Ofrecemos asesoramiento experto en tecnologías Unity, ayudándote a tomar decisiones informadas y a optimizar tus proyectos.
+                </p>
+                <div class="service-tech-stack">
+                  <span class="tech-tag">Unity</span>
+                  <span class="tech-tag">Optimización</span>
+                  <span class="tech-tag">Arquitectura</span>
+                  <span class="tech-tag">Best Practices</span>
+                </div>
+                <a href="#contacto" class="service-cta">Más Info</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Proyectos Section -->
+        <section class="projects-section">
               <h2 id="proyectos" class="text-white text-[32px] font-black leading-tight tracking-[-0.015em] text-center pb-8 pt-5 relative z-10">Proyectos Destacados</h2>
               <div class="projects-grid">
                 <div class="project-card" data-type="game" data-project="alpha">
