@@ -1,21 +1,18 @@
 {
-  "timestamp": "2025-09-19T02:46:25.198Z",
+  "timestamp": "2025-09-19T13:24:18.436Z",
   "buildVersion": "2.0.0",
   "files": {
     "html": [
       "index.html"
     ],
     "css": [
-      "effects.css",
-      "style.css",
       "styles.css"
     ],
     "js": [
       "effects.js",
       "main.js",
       "navigation.js",
-      "performance.js",
-      "simple-effects.js"
+      "performance.js"
     ],
     "assets": [
       "CNAME",
@@ -45,10 +42,6 @@
       "bytes": 1905,
       "kb": 1.86
     },
-    "effects.css": {
-      "bytes": 43271,
-      "kb": 42.26
-    },
     "effects.js": {
       "bytes": 13882,
       "kb": 13.56
@@ -72,14 +65,6 @@
     "performance.js": {
       "bytes": 10150,
       "kb": 9.91
-    },
-    "simple-effects.js": {
-      "bytes": 19392,
-      "kb": 18.94
-    },
-    "style.css": {
-      "bytes": 6809,
-      "kb": 6.65
     },
     "styles.css": {
       "bytes": 21007,
