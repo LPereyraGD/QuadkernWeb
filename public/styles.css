@@ -1,4 +1,4 @@
-/* QuadKern Styles - Generated on 2025-09-19T00:52:02.468Z */
+/* QuadKern Styles - Generated on 2025-09-19T02:44:36.343Z */
 
 /* === BASE.CSS === */
 /* Base styles for QuadKern */
@@ -455,6 +455,10 @@ body {
   max-width: 400px;
   margin: 0 auto var(--spacing-xl);
   transition: all var(--transition-normal);
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .hero-logo:hover {

@@ -10,8 +10,7 @@
     "compile:ts": "npx tsc src/effects.ts --outDir docs --target es2020 --skipLibCheck && npx tsc src/navigation.ts --outDir docs --target es2020 --skipLibCheck && npx tsc src/performance.ts --outDir docs --target es2020 --skipLibCheck",
     "copy:assets": "cp docs/simple-effects.js public/ && cp docs/effects.css public/ && echo '✅ Assets copied to both docs/ and public/'",
     "preview": "vite preview",
-    "deploy": "node deploy.js",
-    "deploy:force-refresh": "node deploy.js --refresh",
+    "deploy": "npm run build && echo '🚀 Ready for GitHub Pages!'",
     "clean": "rm -f docs/*.js docs/*.js.map docs/build-report.json",
     "analyze": "npm run build && echo '📊 Build report available at docs/build-report.json'",
     "dev:watch": "npm run build && echo '👀 Watching for changes...' && nodemon --watch src --ext ts,css --exec 'npm run build'"
