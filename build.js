@@ -155,34 +155,31 @@ class QuadKernBuilder {
     
     for (const file of htmlFiles) {
       const inputPath = path.join(this.docsDir, file);
+      const publicPath = path.join(this.publicDir, file);
+      
       if (fs.existsSync(inputPath)) {
         let content = fs.readFileSync(inputPath, 'utf8');
         
-        // Optimizaciones básicas
-        content = content
+        // Optimizaciones básicas para docs/
+        const docsContent = content
           .replace(/\s+/g, ' ') // Minimizar espacios
           .replace(/<!--[\s\S]*?-->/g, '') // Remover comentarios
-          .replace(/>\s+</g, '><'); // Remover espacios entre tags
+          .replace(/>\s+</g, '><') // Remover espacios entre tags
+          .replace(/<link rel="stylesheet" href="\.\/effects\.css">/g, '<link rel="stylesheet" href="./styles.css">')
+          .replace(/<script src="\.\/simple-effects\.js"><\/script>/g, '<script type="module" src="./main.js"></script>')
+          .replace(/<script src="\.\/navigation\.js"><\/script>/g, '');
         
-        // Actualizar referencias de CSS
-        content = content.replace(
-          /<link rel="stylesheet" href="\.\/effects\.css">/g,
-          '<link rel="stylesheet" href="./styles.css">'
-        );
+        // Versión para public/ (desarrollo)
+        const publicContent = content
+          .replace(/<link rel="stylesheet" href="\.\/effects\.css">/g, '<link rel="stylesheet" href="./styles.css">')
+          .replace(/<script src="\.\/simple-effects\.js"><\/script>/g, '<script type="module" src="./main.js"></script>')
+          .replace(/<script src="\.\/navigation\.js"><\/script>/g, '');
         
-        // Actualizar referencias de JS
-        content = content.replace(
-          /<script src="\.\/simple-effects\.js"><\/script>/g,
-          '<script type="module" src="./main.js"></script>'
-        );
+        // Escribir ambas versiones
+        fs.writeFileSync(inputPath, docsContent);
+        fs.writeFileSync(publicPath, publicContent);
         
-        content = content.replace(
-          /<script src="\.\/navigation\.js"><\/script>/g,
-          ''
-        );
-        
-        fs.writeFileSync(inputPath, content);
-        console.log(`✅ Optimized ${file}`);
+        console.log(`✅ Optimized ${file} (docs & public)`);
       }
     }
   }
