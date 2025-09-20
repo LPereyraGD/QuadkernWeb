@@ -6,11 +6,15 @@
 import { QuadKernEffects } from './effects';
 import { QuadKernNavigation } from './navigation';
 import { QuadKernPerformance } from './performance';
+import { rateLimiter } from './security/rateLimiter';
+import { apiProtection } from './security/endpointProtection';
+import { logger } from './utils/logger';
 
 interface QuadKernConfig {
   enableEffects: boolean;
   enableNavigation: boolean;
   enablePerformance: boolean;
+  enableSecurity: boolean;
   debugMode: boolean;
   autoOptimize: boolean;
 }
@@ -27,6 +31,7 @@ class QuadKernApp {
       enableEffects: true,
       enableNavigation: true,
       enablePerformance: true,
+      enableSecurity: true,
       debugMode: false,
       autoOptimize: true,
       ...config
@@ -39,7 +44,14 @@ class QuadKernApp {
     if (this.isInitialized) return;
 
     try {
-      console.log('🚀 Initializing QuadKern Application...');
+      logger.log('Initializing QuadKern Application...');
+
+      // Verificar rate limiting
+      if (this.config.enableSecurity && !rateLimiter.checkRateLimit()) {
+        logger.warn('Rate limit exceeded, applying restrictions');
+        this.enableExtremePerformanceMode();
+        return;
+      }
 
       // Inicializar módulos según configuración
       if (this.config.enablePerformance) {
@@ -69,13 +81,13 @@ class QuadKernApp {
       this.setupGlobalEvents();
 
       this.isInitialized = true;
-      console.log('✅ QuadKern Application initialized successfully!');
+      logger.log('QuadKern Application initialized successfully!');
 
       // Reportar métricas iniciales
       this.reportInitialMetrics();
 
     } catch (error) {
-      console.error('❌ Error initializing QuadKern Application:', error);
+      logger.error('Error initializing QuadKern Application:', error);
     }
   }
 
@@ -83,9 +95,24 @@ class QuadKernApp {
     // Optimización automática basada en el dispositivo
     const isMobile = /Mobi|Android/i.test(navigator.userAgent);
     const isLowEnd = (navigator as any).deviceMemory < 4;
+    const hardwareConcurrency = navigator.hardwareConcurrency || 4;
+    const isVeryLowEnd = (navigator as any).deviceMemory < 2 || hardwareConcurrency < 2;
 
-    if (isMobile || isLowEnd) {
+    if (isVeryLowEnd) {
+      console.log('🔋 Very low-end device detected, applying extreme optimizations...');
+      document.documentElement.classList.add('performance-mode-extreme');
+      
+      if (this.effects) {
+        this.effects.setIntensity(0.2);
+        this.effects.setSpeed(0.3);
+      }
+
+      if (this.performance) {
+        this.performance.enableLowPowerMode();
+      }
+    } else if (isMobile || isLowEnd) {
       console.log('📱 Mobile/Low-end device detected, applying optimizations...');
+      document.documentElement.classList.add('low-power-mode');
       
       if (this.effects) {
         this.effects.setIntensity(0.6);
@@ -276,7 +303,26 @@ Ejemplos:
       this.performance.enableLowPowerMode();
     }
 
+    // Aplicar clases CSS de optimización
+    document.documentElement.classList.add('low-power-mode');
+
     console.log('🔋 Power saving mode enabled');
+  }
+
+  private enableExtremePerformanceMode(): void {
+    if (this.effects) {
+      this.effects.setIntensity(0.1);
+      this.effects.setSpeed(0.2);
+    }
+
+    if (this.performance) {
+      this.performance.enableLowPowerMode();
+    }
+
+    // Aplicar optimizaciones extremas
+    document.documentElement.classList.add('performance-mode-extreme');
+
+    console.log('🚀 Extreme performance mode enabled');
   }
 
   private reportInitialMetrics(): void {

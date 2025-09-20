@@ -9,6 +9,7 @@ import fs from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
+import { minify } from 'terser';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -38,8 +39,14 @@ class QuadKernBuilder {
       // 2. Compilar TypeScript
       await this.compileTypeScript();
       
+      // 2.5. Ofuscar JavaScript
+      await this.obfuscateJavaScript();
+      
       // 3. Procesar CSS
       await this.processCSS();
+      
+      // 3.5. Optimizar CSS
+      await this.optimizeCSS();
       
       // 4. Optimizar HTML
       await this.optimizeHTML();
@@ -111,6 +118,88 @@ class QuadKernBuilder {
     }
   }
 
+  async obfuscateJavaScript() {
+    console.log('🔒 Obfuscating JavaScript...');
+    
+    try {
+      const jsFiles = [
+        'effects.js',
+        'navigation.js',
+        'performance.js',
+        'main.js'
+      ];
+
+      for (const file of jsFiles) {
+        const filePath = path.join(this.docsDir, file);
+        
+        if (fs.existsSync(filePath)) {
+          const code = fs.readFileSync(filePath, 'utf8');
+          
+          // Ofuscar código JavaScript
+          const obfuscated = await minify(code, {
+            compress: {
+              drop_console: true, // Eliminar console.log
+              drop_debugger: true,
+              pure_funcs: ['console.log', 'console.warn', 'console.debug'],
+              passes: 2,
+              unsafe: true,
+              unsafe_comps: true,
+              unsafe_math: true,
+              unsafe_proto: true
+            },
+            mangle: {
+              toplevel: true,
+              reserved: ['QuadKern', 'window', 'document']
+            },
+            format: {
+              comments: false
+            },
+            sourceMap: false
+          });
+
+          if (obfuscated.error) {
+            throw obfuscated.error;
+          }
+
+          fs.writeFileSync(filePath, obfuscated.code);
+          console.log(`✅ Obfuscated ${file}`);
+        }
+      }
+      
+      console.log('✅ JavaScript obfuscation completed');
+    } catch (error) {
+      console.error('❌ JavaScript obfuscation failed:', error.message);
+      throw error;
+    }
+  }
+
+  async optimizeCSS() {
+    console.log('🎨 Optimizing CSS...');
+    
+    try {
+      const cssPath = path.join(this.docsDir, 'styles.css');
+      
+      if (fs.existsSync(cssPath)) {
+        const css = fs.readFileSync(cssPath, 'utf8');
+        
+        // Optimizaciones básicas de CSS
+        const optimized = css
+          .replace(/\/\*[\s\S]*?\*\//g, '') // Eliminar comentarios
+          .replace(/\s+/g, ' ') // Eliminar espacios múltiples
+          .replace(/;\s*}/g, '}') // Eliminar punto y coma antes de }
+          .replace(/{\s+/g, '{') // Eliminar espacios después de {
+          .replace(/;\s+/g, ';') // Eliminar espacios después de ;
+          .trim();
+
+        fs.writeFileSync(cssPath, optimized);
+        console.log('✅ CSS optimization completed');
+      }
+    } catch (error) {
+      console.error('❌ CSS optimization failed:', error.message);
+      throw error;
+    }
+  }
+
   async processCSS() {
     console.log('🎨 Processing CSS...');
     
@@ -120,7 +209,8 @@ class QuadKernBuilder {
       'components.css',
       'layout.css',
       'sections.css',
-      'responsive.css'
+      'responsive.css',
+      'performance.css' // Added performance.css
     ];
 
     let combinedCSS = '';

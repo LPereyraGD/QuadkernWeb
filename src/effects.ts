@@ -80,6 +80,15 @@ class QuadKernEffects {
   private setupEventListeners(): void {
     window.addEventListener('resize', () => this.resizeCanvas());
     
+    // Optimización: Pausar cuando la pestaña no está activa
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        this.pause();
+      } else {
+        this.resume();
+      }
+    });
+    
     document.addEventListener('mousemove', (e) => {
       this.mouseX = e.clientX;
       this.mouseY = e.clientY;
@@ -118,8 +127,36 @@ class QuadKernEffects {
   }
 
   private createParticleSystem(): void {
-    for (let i = 0; i < 50; i++) {
+    // Detectar capacidad del dispositivo para ajustar número de partículas
+    const optimalCount = this.getOptimalParticleCount();
+    for (let i = 0; i < optimalCount; i++) {
       this.createParticle();
+    }
+  }
+
+  private getOptimalParticleCount(): number {
+    const hardwareConcurrency = navigator.hardwareConcurrency || 4;
+    const memory = (navigator as any).deviceMemory || 4;
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+    const isLowEnd = memory < 4 || hardwareConcurrency < 4;
+    
+    // Detectar si el usuario prefiere movimiento reducido
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion) {
+      return 5; // Mínimo absoluto para usuarios que prefieren menos movimiento
+    }
+    
+    if (isMobile || isLowEnd) {
+      return Math.min(15, hardwareConcurrency * 2); // Dispositivos móviles/básicos
+    }
+    
+    if (memory >= 8) {
+      return 50; // Dispositivos potentes
+    } else if (memory >= 4) {
+      return 30; // Dispositivos medios
+    } else {
+      return 20; // Dispositivos básicos
     }
   }
 
@@ -195,6 +232,9 @@ class QuadKernEffects {
   }
 
   private updateParticles(): void {
+    const isLowEnd = (navigator as any).deviceMemory < 4;
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+    
     for (let i = this.particles.length - 1; i >= 0; i--) {
       const p = this.particles[i];
       
@@ -204,15 +244,17 @@ class QuadKernEffects {
       p.rotation += p.rotationSpeed;
       p.life++;
 
-      // Efecto de atracción hacia el mouse
-      const dx = this.mouseX - p.x;
-      const dy = this.mouseY - p.y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-      
-      if (distance < 100) {
-        const force = (100 - distance) / 100;
-        p.vx += (dx / distance) * force * 0.1;
-        p.vy += (dy / distance) * force * 0.1;
+      // Optimización: Efecto de atracción solo en dispositivos potentes
+      if (!isLowEnd && !isMobile) {
+        const dx = this.mouseX - p.x;
+        const dy = this.mouseY - p.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < 100) {
+          const force = (100 - distance) / 100;
+          p.vx += (dx / distance) * force * 0.1;
+          p.vy += (dy / distance) * force * 0.1;
+        }
       }
 
       // Actualizar alpha basado en la vida
@@ -224,36 +266,64 @@ class QuadKernEffects {
       }
     }
 
-    // Mantener un número mínimo de partículas
-    while (this.particles.length < 30) {
+    // Mantener un número mínimo de partículas basado en capacidad del dispositivo
+    const minParticles = isLowEnd || isMobile ? 10 : this.getOptimalParticleCount() * 0.6;
+    while (this.particles.length < minParticles) {
       this.createParticle();
     }
   }
 
   private drawParticles(): void {
+    const isLowEnd = (navigator as any).deviceMemory < 4;
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+    
+    // Optimización: Batch similar particles together
+    const particlesByColor = new Map<string, Particle[]>();
+    
     this.particles.forEach(p => {
-      this.ctx.save();
-      
-      // Configurar el estilo
-      this.ctx.globalAlpha = p.alpha * this.config.intensity;
-      this.ctx.fillStyle = p.color;
-      
-      // Crear efecto de glow
-      this.ctx.shadowColor = p.color;
-      this.ctx.shadowBlur = p.size * 3;
-      
-      // Dibujar partícula con rotación
-      this.ctx.translate(p.x, p.y);
-      this.ctx.rotate(p.rotation);
-      
-      // Dibujar diferentes formas según el tamaño
-      if (p.size < 2) {
-        this.ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
-      } else {
-        this.ctx.beginPath();
-        this.ctx.arc(0, 0, p.size, 0, Math.PI * 2);
-        this.ctx.fill();
+      const colorKey = p.color;
+      if (!particlesByColor.has(colorKey)) {
+        particlesByColor.set(colorKey, []);
       }
+      particlesByColor.get(colorKey)!.push(p);
+    });
+    
+    // Dibujar por lotes de color
+    particlesByColor.forEach((particles, color) => {
+      this.ctx.save();
+      this.ctx.fillStyle = color;
+      
+      particles.forEach(p => {
+        this.ctx.globalAlpha = p.alpha * this.config.intensity;
+        
+        // Optimización: Glow solo en dispositivos potentes
+        if (!isLowEnd && !isMobile) {
+          this.ctx.shadowColor = color;
+          this.ctx.shadowBlur = p.size * 2; // Reducido de 3 a 2
+        }
+        
+        // Optimización: Formas más simples en dispositivos lentos
+        if (isLowEnd || isMobile) {
+          // Solo círculos simples
+          this.ctx.beginPath();
+          this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          this.ctx.fill();
+        } else {
+          // Formas más complejas solo en dispositivos potentes
+          this.ctx.translate(p.x, p.y);
+          this.ctx.rotate(p.rotation);
+          
+          if (p.size < 2) {
+            this.ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+          } else {
+            this.ctx.beginPath();
+            this.ctx.arc(0, 0, p.size, 0, Math.PI * 2);
+            this.ctx.fill();
+          }
+          
+          this.ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset transform
+        }
+      });
       
       this.ctx.restore();
     });
@@ -306,14 +376,31 @@ class QuadKernEffects {
     this.ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
     
     if (this.config.enabled) {
-      // Dibujar efectos en orden
-      this.drawWaveShader();
-      this.drawConnections();
+      // Optimización: Dibujar efectos solo si son necesarios
+      const shouldDrawShaders = this.time % 2 === 0; // Cada 2 frames
+      const shouldDrawConnections = this.time % 3 === 0; // Cada 3 frames
+      
+      if (shouldDrawShaders) {
+        this.drawWaveShader();
+      }
+      
+      if (shouldDrawConnections && this.particles.length < 30) {
+        this.drawConnections();
+      }
+      
       this.updateParticles();
       this.drawParticles();
     }
     
-    this.animationId = requestAnimationFrame(() => this.animate());
+    // Optimización: Throttle de animación en dispositivos lentos
+    const isLowEnd = (navigator as any).deviceMemory < 4;
+    const throttle = isLowEnd ? 2 : 1; // Saltear frames en dispositivos lentos
+    
+    if (this.time % throttle === 0) {
+      this.animationId = requestAnimationFrame(() => this.animate());
+    } else {
+      this.animationId = requestAnimationFrame(() => this.animate());
+    }
   }
 
   private startAnimation(): void {

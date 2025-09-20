@@ -1,0 +1,26 @@
+{
+  "buildDate": "2025-09-20T22:58:22.430Z",
+  "optimizations": {
+    "javascriptObfuscation": "MAXIMUM",
+    "cssOptimization": "EXTREME",
+    "consoleLogsRemoved": true,
+    "commentsRemoved": true,
+    "sourceMapsRemoved": true,
+    "rateLimitEnabled": true,
+    "endpointProtection": true
+  },
+  "security": {
+    "codeObfuscation": "HEAVY",
+    "apiEndpointsHidden": true,
+    "queriesObfuscated": true,
+    "ddosProtection": true,
+    "rateLimiting": true
+  },
+  "performance": {
+    "cssMinified": true,
+    "jsMinified": true,
+    "assetsOptimized": true,
+    "lazyLoadingEnabled": true,
+    "adaptivePerformance": true
+  }
+}

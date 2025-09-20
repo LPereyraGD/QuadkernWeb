@@ -65,15 +65,23 @@ class QuadKernPerformance {
     const hardwareConcurrency = navigator.hardwareConcurrency || 4;
     const memory = (navigator as any).deviceMemory || 4;
     const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+    const isLowEnd = memory < 4 || hardwareConcurrency < 4;
     
-    if (isMobile) {
-      return Math.min(20, hardwareConcurrency * 3);
+    // Detectar si el usuario prefiere movimiento reducido
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion) {
+      return 5; // Mínimo absoluto
     }
     
-    if (memory >= 8) {
+    if (isMobile || isLowEnd) {
+      return Math.min(15, hardwareConcurrency * 2); // Dispositivos móviles/básicos
+    }
+    
+    if (memory >= 8 && hardwareConcurrency >= 6) {
       return 50; // Dispositivos potentes
-    } else if (memory >= 4) {
-      return 35; // Dispositivos medios
+    } else if (memory >= 4 && hardwareConcurrency >= 4) {
+      return 30; // Dispositivos medios
     } else {
       return 20; // Dispositivos básicos
     }
@@ -166,6 +174,7 @@ class QuadKernPerformance {
     // Monitorear performance en tiempo real
     let frameCount = 0;
     let lastTime = performance.now();
+    let lowFpsCount = 0;
     
     const measureFPS = () => {
       frameCount++;
@@ -174,11 +183,21 @@ class QuadKernPerformance {
       if (currentTime - lastTime >= 1000) {
         const fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
         
-        // Ajustar efectos según FPS
+        // Ajustar efectos según FPS - más agresivo
         if (fps < 30) {
+          lowFpsCount++;
           this.reduceEffects();
+          
+          // Si hay FPS bajo persistente, aplicar optimizaciones más agresivas
+          if (lowFpsCount >= 3) {
+            this.enableAggressiveOptimizations();
+            lowFpsCount = 0; // Reset counter
+          }
         } else if (fps > 50) {
+          lowFpsCount = 0; // Reset counter
           this.enhanceEffects();
+        } else {
+          lowFpsCount = Math.max(0, lowFpsCount - 1); // Gradual recovery
         }
         
         frameCount = 0;
@@ -207,6 +226,27 @@ class QuadKernPerformance {
       effects.setIntensity(1.0);
       effects.setSpeed(1.0);
     }
+  }
+
+  private enableAggressiveOptimizations(): void {
+    console.log('🚀 Enabling aggressive optimizations due to persistent low FPS');
+    
+    const effects = (window as any).quadkernEffects;
+    if (effects) {
+      effects.setIntensity(0.3);
+      effects.setSpeed(0.5);
+    }
+    
+    // Reducir aún más partículas
+    this.config.maxParticles = Math.max(5, Math.floor(this.config.maxParticles * 0.5));
+    
+    // Deshabilitar efectos no críticos
+    this.config.enableLazyLoading = false;
+    this.config.enableResourcePreloading = false;
+    
+    // Aplicar optimizaciones de CSS
+    document.documentElement.style.setProperty('--animation-duration', '0.1s');
+    document.documentElement.style.setProperty('--transition-duration', '0.1s');
   }
 
   private optimizeForGitHubPages(): void {

@@ -1,0 +1,235 @@
+/* Optimizaciones de performance para dispositivos lentos */
+
+/* Variables CSS para optimización dinámica */
+:root {
+  --animation-duration: 0.3s;
+  --transition-duration: 0.2s;
+  --particle-opacity: 0.6;
+  --shadow-blur: 10px;
+}
+
+/* Optimizaciones para dispositivos con prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --animation-duration: 0.1s;
+    --transition-duration: 0.1s;
+    --particle-opacity: 0.3;
+    --shadow-blur: 5px;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .hero-section::before,
+  .hero-section::after,
+  .services-section::before,
+  .projects-section::before,
+  .team-section::before,
+  .contact-section::before {
+    animation: none !important;
+  }
+}
+
+/* Optimizaciones para dispositivos de bajo rendimiento */
+@media (max-width: 768px), (max-device-width: 768px) {
+  :root {
+    --animation-duration: 0.2s;
+    --transition-duration: 0.15s;
+    --particle-opacity: 0.4;
+    --shadow-blur: 8px;
+  }
+  
+  /* Reducir efectos de sombra */
+  .service-card,
+  .project-card,
+  .team-member,
+  .contact-form-wrapper {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  /* Simplificar gradientes */
+  .hero-section {
+    background: linear-gradient(135deg, #0f1624 0%, #1a1f3a 100%) !important;
+  }
+  
+  .services-section {
+    background: linear-gradient(135deg, #1a1f3a 0%, #2d3748 100%) !important;
+  }
+  
+  .projects-section {
+    background: linear-gradient(135deg, #2d3748 0%, #1a1f3a 100%) !important;
+  }
+  
+  .team-section {
+    background: linear-gradient(135deg, #1a1f3a 0%, #0f1624 100%) !important;
+  }
+  
+  .contact-section {
+    background: linear-gradient(135deg, #0f1624 0%, #1a1f3a 100%) !important;
+  }
+}
+
+/* Optimizaciones para conexiones lentas */
+@media (prefers-reduced-data: reduce) {
+  /* Deshabilitar efectos de fondo */
+  .hero-section::before,
+  .hero-section::after,
+  .services-section::before,
+  .projects-section::before,
+  .team-section::before,
+  .contact-section::before {
+    display: none !important;
+  }
+  
+  /* Simplificar animaciones */
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Optimizaciones para dispositivos con poca memoria */
+@media (max-device-memory: 2GB) {
+  :root {
+    --animation-duration: 0.1s;
+    --transition-duration: 0.1s;
+    --particle-opacity: 0.2;
+    --shadow-blur: 3px;
+  }
+  
+  /* Reducir complejidad visual */
+  .service-card:hover,
+  .project-card:hover,
+  .team-member:hover {
+    transform: none !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  /* Simplificar efectos de hover */
+  .hero-btn-primary:hover,
+  .hero-btn-secondary:hover {
+    transform: none !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
+/* Optimizaciones para modo de bajo consumo */
+.low-power-mode {
+  --animation-duration: 0.05s;
+  --transition-duration: 0.05s;
+  --particle-opacity: 0.1;
+  --shadow-blur: 2px;
+}
+
+.low-power-mode * {
+  animation-duration: 0.05s !important;
+  transition-duration: 0.05s !important;
+}
+
+.low-power-mode .hero-section::before,
+.low-power-mode .hero-section::after,
+.low-power-mode .services-section::before,
+.low-power-mode .projects-section::before,
+.low-power-mode .team-section::before,
+.low-power-mode .contact-section::before {
+  display: none !important;
+}
+
+/* Optimizaciones para canvas de partículas */
+#quadkern-effects {
+  will-change: auto;
+}
+
+.low-performance #quadkern-effects {
+  opacity: 0.3 !important;
+}
+
+.very-low-performance #quadkern-effects {
+  display: none !important;
+}
+
+/* Optimizaciones para scroll */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Optimizaciones para imágenes */
+img {
+  image-rendering: optimizeSpeed;
+}
+
+.high-dpi img {
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Optimizaciones para fuentes */
+@font-face {
+  font-display: swap;
+}
+
+/* Optimizaciones para layout */
+* {
+  contain: layout style;
+}
+
+.hero-section,
+.services-section,
+.projects-section,
+.team-section,
+.contact-section {
+  contain: layout style paint;
+}
+
+/* Optimizaciones para GPU */
+.hero-logo,
+.service-card,
+.project-card,
+.team-member {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimizaciones para dispositivos táctiles */
+@media (pointer: coarse) {
+  /* Reducir efectos hover para dispositivos táctiles */
+  .service-card:hover,
+  .project-card:hover,
+  .team-member:hover {
+    transform: none !important;
+  }
+}
+
+/* Clase para activar optimizaciones extremas */
+.performance-mode-extreme {
+  --animation-duration: 0.01s;
+  --transition-duration: 0.01s;
+  --particle-opacity: 0.05;
+  --shadow-blur: 1px;
+}
+
+.performance-mode-extreme * {
+  animation: none !important;
+  transition: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.performance-mode-extreme #quadkern-effects {
+  display: none !important;
+}
+
+.performance-mode-extreme .hero-section::before,
+.performance-mode-extreme .hero-section::after,
+.performance-mode-extreme .services-section::before,
+.performance-mode-extreme .projects-section::before,
+.performance-mode-extreme .team-section::before,
+.performance-mode-extreme .contact-section::before {
+  display: none !important;
+}
