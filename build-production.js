@@ -228,7 +228,8 @@ class QuadKernProductionBuilder {
     const htmlFiles = ['index.html'];
     
     for (const file of htmlFiles) {
-      const inputPath = path.join(this.docsDir, file);
+      const inputPath = path.join(__dirname, file); // Buscar en directorio raíz
+      const docsOutputPath = path.join(this.docsDir, file);
       const publicPath = path.join(this.publicDir, file);
       
       if (fs.existsSync(inputPath)) {
@@ -237,16 +238,21 @@ class QuadKernProductionBuilder {
         // Optimizaciones de HTML para producción
         content = content
           .replace(/<link rel="stylesheet" href="\.\/effects\.css">/g, '<link rel="stylesheet" href="./styles.css">')
+          .replace(/<link rel="stylesheet" href="\/effects\.css">/g, '<link rel="stylesheet" href="./styles.css">')
           .replace(/<script src="\.\/simple-effects\.js"><\/script>/g, '')
           .replace(/<script src="\/simple-effects\.js"><\/script>/g, '')
           .replace(/<script src="\.\/navigation\.js"><\/script>/g, '')
           .replace(/<script src="\/navigation\.js"><\/script>/g, '')
+          .replace(/<script src="\.\/public\/navigation\.js"><\/script>/g, '')
+          .replace(/href="\/public\//g, 'href="./')
+          .replace(/src="\/public\//g, 'src="./')
+          .replace(/src="\/QuadkernLogo\.png"/g, 'src="./QuadkernLogo.png"')
           .replace(/\s+/g, ' ') // Eliminar espacios múltiples
           .replace(/>\s+</g, '><') // Eliminar espacios entre tags
           .trim();
 
         // Versión para docs (GitHub Pages) - NO minificar para evitar problemas
-        fs.writeFileSync(inputPath, content);
+        fs.writeFileSync(docsOutputPath, content);
         
         // Versión para public (desarrollo)
         fs.writeFileSync(publicPath, content);

@@ -245,7 +245,8 @@ class QuadKernBuilder {
     const htmlFiles = ['index.html'];
     
     for (const file of htmlFiles) {
-      const inputPath = path.join(this.docsDir, file);
+      const inputPath = path.join(__dirname, file); // Buscar en directorio raíz
+      const docsOutputPath = path.join(this.docsDir, file);
       const publicPath = path.join(this.publicDir, file);
       
       if (fs.existsSync(inputPath)) {
@@ -268,7 +269,7 @@ class QuadKernBuilder {
           .replace(/<script src="\/navigation\.js"><\/script>/g, '');
         
         // Escribir ambas versiones
-        fs.writeFileSync(inputPath, docsContent);
+        fs.writeFileSync(docsOutputPath, docsContent);
         fs.writeFileSync(publicPath, publicContent);
         
         console.log(`✅ Optimized ${file} (docs & public)`);
