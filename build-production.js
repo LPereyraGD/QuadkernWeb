@@ -237,8 +237,10 @@ class QuadKernProductionBuilder {
         // Optimizaciones de HTML para producción
         content = content
           .replace(/<link rel="stylesheet" href="\.\/effects\.css">/g, '<link rel="stylesheet" href="./styles.css">')
-          .replace(/<script src="\.\/simple-effects\.js"><\/script>/g, '<script type="module" src="./main.js"></script>')
+          .replace(/<script src="\.\/simple-effects\.js"><\/script>/g, '')
+          .replace(/<script src="\/simple-effects\.js"><\/script>/g, '')
           .replace(/<script src="\.\/navigation\.js"><\/script>/g, '')
+          .replace(/<script src="\/navigation\.js"><\/script>/g, '')
           .replace(/\s+/g, ' ') // Eliminar espacios múltiples
           .replace(/>\s+</g, '><') // Eliminar espacios entre tags
           .trim();

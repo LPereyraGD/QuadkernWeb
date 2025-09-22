@@ -254,14 +254,18 @@ class QuadKernBuilder {
         // NO minimizar para docs/ - GitHub Pages necesita HTML legible
         const docsContent = content
           .replace(/<link rel="stylesheet" href="\.\/effects\.css">/g, '<link rel="stylesheet" href="./styles.css">')
-          .replace(/<script src="\.\/simple-effects\.js"><\/script>/g, '<script type="module" src="./main.js"></script>')
-          .replace(/<script src="\.\/navigation\.js"><\/script>/g, '');
+          .replace(/<script src="\.\/simple-effects\.js"><\/script>/g, '')
+          .replace(/<script src="\/simple-effects\.js"><\/script>/g, '')
+          .replace(/<script src="\.\/navigation\.js"><\/script>/g, '')
+          .replace(/<script src="\/navigation\.js"><\/script>/g, '');
         
         // Versión para public/ (desarrollo)
         const publicContent = content
           .replace(/<link rel="stylesheet" href="\.\/effects\.css">/g, '<link rel="stylesheet" href="./styles.css">')
-          .replace(/<script src="\.\/simple-effects\.js"><\/script>/g, '<script type="module" src="./main.js"></script>')
-          .replace(/<script src="\.\/navigation\.js"><\/script>/g, '');
+          .replace(/<script src="\.\/simple-effects\.js"><\/script>/g, '')
+          .replace(/<script src="\/simple-effects\.js"><\/script>/g, '')
+          .replace(/<script src="\.\/navigation\.js"><\/script>/g, '')
+          .replace(/<script src="\/navigation\.js"><\/script>/g, '');
         
         // Escribir ambas versiones
         fs.writeFileSync(inputPath, docsContent);
